@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "globallypaid_test_app"
+		},
+		{
+			"path": "active_merchant"
+		}
+	],
+	"settings": {}
+}
