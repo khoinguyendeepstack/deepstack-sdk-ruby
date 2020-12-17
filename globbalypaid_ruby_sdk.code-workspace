@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "active_merchant"
+		},
+		{
+			"path": "."
 		}
 	],
 	"settings": {}

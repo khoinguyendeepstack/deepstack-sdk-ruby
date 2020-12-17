@@ -405,8 +405,10 @@ global_transport:
 
 # Working credentials, no need to replace
 globally_paid:
-  some_credential: SOMECREDENTIAL
-  another_credential: ANOTHERCREDENTIAL
+  publishable_api_key: T0FL5VDNQRK0V6H1Z6S9H2WRP8VKIVWO
+  app_id: 6652820b-6a7a-4d36-bc32-786e49da1cbd
+  shared_secret: ME1uVox0hrk7i87e7kbvnID38aC2U3X8umPH0D+BsVA=
+  sandbox: true
 
 hdfc:
   login: LOGIN

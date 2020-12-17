@@ -1,20 +1,29 @@
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     class GloballyPaidGateway < Gateway
-      self.test_url = 'https://qa.token.globallypaid.com'
-      self.live_url = ''
+      self.test_url = 'https://qa.transactions.globallypaid.com/api'
+      self.live_url = 'https://transactions.globallypaid.com/api'
+      # self.test_token_url = 'https://qa.token.globallypaid.com'
+      # self.live_token_url = 'https://token.globallypaid.com'
 
       self.supported_countries = ['US']
       self.default_currency = 'USD'
       self.supported_cardtypes = [:visa, :master, :american_express, :discover]
 
-      self.homepage_url = ''
+      self.homepage_url = 'https://globallypaid.com/'
       self.display_name = 'Globally Paid SDK'
 
       STANDARD_ERROR_CODE_MAPPING = {}
 
+      # Test values      
+      test_auth_credentials = {
+        :publishable_api_key => 'T0FL5VDNQRK0V6H1Z6S9H2WRP8VKIVWO', 
+        :app_id => '6652820b-6a7a-4d36-bc32-786e49da1cbd', 
+        :shared_secret => 'ME1uVox0hrk7i87e7kbvnID38aC2U3X8umPH0D+BsVA=', 
+        :sandbox => true}
+
       def initialize(options={})
-        requires!(options, :some_credential, :another_credential)
+        requires!(options, :publishable_api_key, :app_id, :shared_secret, :sandbox)
         super
       end
 
@@ -67,6 +76,11 @@ module ActiveMerchant #:nodoc:
 
       private
 
+      # Generate HMAC signature from provided message and secret key with algorithm
+      def hmac_digest(msg, secret_key, algorithm)
+        mac = OpenSSL::HMAC.hexdigest(algorithm, secret_key, msg)
+      end
+
       def add_customer_data(post, options)
       end
 
@@ -86,8 +100,7 @@ module ActiveMerchant #:nodoc:
       end
 
       def commit(action, parameters)
-        url = (test? ? test_url : live_url)
-        response = parse(ssl_post(url, post_data(action, parameters)))
+        response = parse(ssl_post(url(action), post_data(action, parameters)))
 
         Response.new(
           success_from(response),
@@ -100,6 +113,29 @@ module ActiveMerchant #:nodoc:
           error_code: error_code_from(response)
         )
       end
+
+      def url(action, authorization = nil)
+        puts "Action: #{action}"
+        uri_action = uri(action)
+        puts "URI: #{uri_action}"
+        test? ? "#{test_url}#{uri_action}" : "#{live_url}#{uri_action}"
+      end      
+
+      def uri(action)
+        uri = "/v1"
+        case action
+        when "sale"
+          uri + "/capture"
+        when "capture"
+          uri + "/capture"
+        when "refund"
+          uri + "/refund"
+        when "void"
+          uri + "/cancel"
+        else
+          uri + "/noaction"
+        end
+      end      
 
       def success_from(response)
       end
