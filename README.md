@@ -5,6 +5,7 @@ The official GloballyPaid Ruby client library.
 ## Requirements
 
 Ruby 2.4.0 or later
+
 ActiveMerchant 1.110 or later
 
 ## Bundler
