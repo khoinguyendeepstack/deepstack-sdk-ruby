@@ -13,22 +13,26 @@ class GloballyPaidTest < Test::Unit::TestCase
     }
   end
 
-  def test_successful_purchase
-    @gateway.expects(:ssl_post).returns(successful_purchase_response)
+  # def test_successful_purchase
+  #   @gateway.expects(:ssl_post).returns(successful_purchase_response)
 
-    response = @gateway.purchase(@amount, @credit_card, @options)
-    assert_success response
+  #   response = @gateway.purchase(@amount, @credit_card, @options)
+  #   assert_success response
 
-    assert_equal 'REPLACE', response.authorization
-    assert response.test?
-  end
+  #   assert_equal 'REPLACE', response.authorization
+  #   assert response.test?
+  # end
 
-  def test_failed_purchase
-    @gateway.expects(:ssl_post).returns(failed_purchase_response)
+  # def test_failed_purchase
+  #   @gateway.expects(:ssl_post).returns(failed_purchase_response)
 
-    response = @gateway.purchase(@amount, @credit_card, @options)
-    assert_failure response
-    assert_equal Gateway::STANDARD_ERROR_CODE[:card_declined], response.error_code
+  #   response = @gateway.purchase(@amount, @credit_card, @options)
+  #   assert_failure response
+  #   assert_equal Gateway::STANDARD_ERROR_CODE[:card_declined], response.error_code
+  # end
+
+  def test_hmac_digest
+    
   end
 
   def test_successful_authorize

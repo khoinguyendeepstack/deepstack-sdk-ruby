@@ -114,7 +114,7 @@ module ActiveMerchant #:nodoc:
       # :dollars => '12.50'
       # :cents => '1250'
       class_attribute :money_format
-      self.money_format = :dollars
+      self.money_format = :cents
 
       # The default currency for the transactions if no currency is provided
       class_attribute :default_currency

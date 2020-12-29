@@ -28,7 +28,7 @@ or from a github repository:
 
 ```
 gem 'active-merchant-globally-paid-gateway', :github => 'user/repo'
-
+```
 
 # Documentation
 
@@ -91,11 +91,11 @@ The second type are the remote unit tests.  These use real test accounts, if ava
 
 To run tests: 
 
-'''bash
+```bash
 $ bundle install
 $ bundle exec rake test:local   #Runs `test:units` and `rubocop`. All these tests should pass.
 $ bundle exec rake test:remote  #Will not pass without updating test/fixtures.yml with credentials
-'''
+```
 
 To run a test suite individually:
 
