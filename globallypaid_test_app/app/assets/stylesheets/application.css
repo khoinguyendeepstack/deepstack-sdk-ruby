@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+ .sidebar {
+     width: 15%;
+     float: left;
+     height: 100vw;
+ }
+
+.logo img {
+    width: 150px;
+}

@@ -5,12 +5,17 @@ class RemoteGloballyPaidTest < Test::Unit::TestCase
     @gateway = GloballyPaidGateway.new(fixtures(:globally_paid))
 
     @amount = 123
-    @credit_card = credit_card('4000100011112224')
-    @declined_card = credit_card('4000300011112220')
+    @credit_card = credit_card_gp('4000100011112224')
+    @declined_card = credit_card_gp('4000300011112220')
     @options = {
       billing_contact: billing_contact,
-      billing_address: address,
-      description: 'Store Purchase'
+      # address: address,
+      description: 'Store Purchase',
+      client_customer_id: "1474687",
+      client_transaction_id: "154896575",
+      client_transaction_description: "ChargeWithToken for TesterXXX3",
+      client_invoice_id: "758496",
+      currency_code: "USD"
     }
   end
 
@@ -34,6 +39,12 @@ class RemoteGloballyPaidTest < Test::Unit::TestCase
     assert capture = @gateway.capture(@amount, auth.authorization)
     assert_success capture
     assert_equal 'Approved', capture.message
+  end
+
+  def test_successful_list_customers
+    customers = @gateway.list_customers
+
+    assert_success customers
   end
 
   # def test_failed_authorize
@@ -120,6 +131,15 @@ class RemoteGloballyPaidTest < Test::Unit::TestCase
     billing_contact[:address] = address
     billing_contact[:phone] = "614-340-0823"
     billing_contact[:email] = "test@test.com"
+    billing_contact
+  end
+
+  def credit_card_gp(number)
+    creditcard = {}
+    creditcard[:number] = number # "4847182731147117"
+    creditcard[:expiration] = "0627"
+    creditcard[:cvv] = "361"
+    creditcard
   end
 
 end

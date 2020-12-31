@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Globallypaid</title>
+    <title>Globallypaid SDK</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,6 +12,20 @@
 
   <body>
     <div id="gpg-form"></div>
-    <%= yield %>
+    <div class="sidebar">
+      <%# <h1>GloballyPaid Sample App</h1> %>
+      <div class="logo">
+        <%= image_tag "globallypaid-logo" %>
+      </div>
+
+      <ul>
+          <li><%= link_to 'Customers', customers_path %></li>
+          <li><%= link_to 'Payment Instruments', payment_instruments_path %></li>
+          <%# <li>Transactions</li> %>
+      </ul>    
+    </div>
+    <div class="main">
+      <%= yield %>
+    </div>
   </body>
 </html>

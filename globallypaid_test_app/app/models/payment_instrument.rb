@@ -1,0 +1,2 @@
+class PaymentInstrument < ApplicationRecord
+end

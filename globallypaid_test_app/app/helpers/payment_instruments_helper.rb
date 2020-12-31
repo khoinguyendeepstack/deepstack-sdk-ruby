@@ -1,0 +1,2 @@
+module PaymentInstrumentsHelper
+end

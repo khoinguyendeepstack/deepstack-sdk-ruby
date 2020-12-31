@@ -3,7 +3,7 @@ require 'json'
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     class GloballyPaidGateway < Gateway
-      self.test_url = 'https://qa.transactions.globallypaid.com/api'
+      self.test_url = 'https://qa.api.globallypaid.com/api'
       self.live_url = 'https://transactions.globallypaid.com/api'
 
       self.supported_countries = ['US']
@@ -34,22 +34,23 @@ module ActiveMerchant #:nodoc:
 
       def charge(money, payment, options={})
         post = {}
-        add_token(post)
         add_invoice(post, money, options)
         add_payment(post, payment)
-        add_address(post, payment, options)
         add_customer_data(post, options)
+        add_address(post, payment, options)
+        puts "Post (charge): #{post}"
+        add_token(post)
 
         commit('sale', post)
       end
 
       def authorize(money, payment, options={})
         post = {}
-        add_token(post)
         add_invoice(post, money, options)
         save_payment(post, payment)
+        add_customer_data(post, options)        
         add_address(post, payment, options)
-        add_customer_data(post, options)
+        add_token(post)
 
         commit('authonly', post)
       end
@@ -58,6 +59,7 @@ module ActiveMerchant #:nodoc:
         post = init_post(options)
         add_invoice(post, money, options)
         add_charge(post, authorization)
+
         commit('capture', post)
       end
 
@@ -73,7 +75,19 @@ module ActiveMerchant #:nodoc:
       end
 
       def list_customers()
-        commit('list_customers')
+        # commit('list_customers', {})
+        response = ssl_get('https://qa.api.globallypaid.com/api/v1/customer', headers)
+
+        Response.new(
+          # success_from(response),
+          # message_from(response),
+          response,
+          authorization: authorization_from(response),
+          # avs_result: AVSResult.new(code: response["cvv_result"]),
+          # cvv_result: CVVResult.new(response["avs_result"]),
+          test: test?,
+          # error_code: error_code_from(response)
+        )        
       end
 
       def create_customer(customer, options={})
@@ -138,16 +152,11 @@ module ActiveMerchant #:nodoc:
       end
 
       def add_hmac_header(post)
-        puts "Shared secret: #{@shared_secret}"
-        puts "App ID: #{@app_id}"
         uuid = SecureRandom.uuid
         secret_decoded = Base64.strict_decode64(@shared_secret)
         hash_in_base64 = Base64.strict_encode64(OpenSSL::HMAC.digest('SHA256', secret_decoded, JSON.generate(post)))
-        # puts "Hash in Base64: #{hash_in_base64}"
         hmac_string = "#{@app_id}:POST:#{uuid.to_s}:#{hash_in_base64}"
-        # puts "HMAC String: #{hmac_string}"
         hmac_encoded = Base64.strict_encode64(hmac_string)
-        # puts "HMAC Encoded: #{hmac_encoded}"
         {'hmac' => hmac_encoded}
       end
 
@@ -159,32 +168,36 @@ module ActiveMerchant #:nodoc:
         }
       end      
 
-      def add_customer_data(post, options)
-        post[:billing_contact] = options[:billing_contact]
+      def add_customer_data(post, options)        
+        post[:payment_instrument][:billing_contact] = options[:billing_contact]
       end
 
       def add_address(post, creditcard, options)
-        address = {}
-        address[:line_1] = "123 Main St"
-        address[:city] = "NYC"
-        address[:state] = "NY"
-        address[:postal_code] = "92657"
-        address[:country] = "United States"     
+        # puts "Options: #{options}"
+        # puts "Post (add_address): #{post}"
+        # billing_contact = options[:billing_contact]
+        # # billing_contact[:address] = options[:address]
+        # post[:payment_instrument][:billing_contact] = billing_contact
+        # # post[:payment_instrument][:billing_contact][:address] = options[:billing_address]
       end
 
       def add_invoice(post, money, options)
         post[:amount] = amount(money)
-        # post[:currency] = (options[:currency] || currency(money))
+        post[:client_customer_id] = options[:client_customer_id]
+        post[:client_transaction_id] = options[:client_transaction_id]
+        post[:client_transaction_description] = options[:client_transaction_description]
+        post[:client_invoice_id] = options[:client_invoice_id]
+        post[:currency_code] = options[:currency_code]
       end
 
       def add_payment(post, payment)
-        post[:client_customer_id] = "1474687"
+        payment_instrument = {}
+        payment_instrument[:type] = "creditcard"
+        payment_instrument[:creditcard] = payment
+
+        post[:payment_instrument] = payment_instrument
         post[:capture] = true
         post[:rescurring] = false
-        post[:currency_code] = "USD"
-        post[:client_transaction_id] = "154896575"
-        post[:client_transaction_description] = "ChargeWithToken for TesterXXX3"
-        post[:client_invoice_id] = "758496"
         post[:avs] = false
         post[:user_agent] = nil
         post[:browser_header] = nil
@@ -192,17 +205,16 @@ module ActiveMerchant #:nodoc:
       end
 
       def save_payment(post, payment)
-        post[:client_customer_id] = "1474687"
+        payment_instrument = {}
+        payment_instrument[:type] = "creditcard"
+        payment_instrument[:creditcard] = payment
+
+        post[:payment_instrument] = payment_instrument
         post[:capture] = false
-        post[:rescurring] = false
-        post[:currency_code] = "USD"
-        post[:client_transaction_id] = "154896575"
-        post[:client_transaction_description] = "ChargeWithToken for TesterXXX3"
-        post[:client_invoice_id] = "758496"
-        post[:avs] = false
+        post[:recurring] = false
         post[:user_agent] = nil
         post[:browser_header] = nil
-        post[:save_payment_instrument] = false      
+        post[:save_payment_instrument] = false   
       end
 
       def parse(body)
@@ -212,24 +224,20 @@ module ActiveMerchant #:nodoc:
       def commit(action, parameters)
         response = parse(ssl_post(url(action), post_data(action, parameters), headers.merge(add_hmac_header(parameters))))
 
-        puts "Response: #{response}"
-
         Response.new(
           success_from(response),
           message_from(response),
           response,
           authorization: authorization_from(response),
-          # avs_result: AVSResult.new(code: response["some_avs_response_key"]),
-          # cvv_result: CVVResult.new(response["some_cvv_response_key"]),
+          avs_result: AVSResult.new(code: response["cvv_result"]),
+          cvv_result: CVVResult.new(response["avs_result"]),
           test: test?,
           error_code: error_code_from(response)
         )
       end
 
       def url(action, authorization = nil)
-        puts "Action: #{action}"
         uri_action = uri(action)
-        puts "URI: #{uri_action}"
         test? ? "#{test_url}#{uri_action}" : "#{live_url}#{uri_action}"
       end      
 
@@ -274,44 +282,8 @@ module ActiveMerchant #:nodoc:
       def add_token(post)
         # Fetch the token 
         token_url = 'https://qa.token.globallypaid.com/api/v1/Token'
-        auth = {}
-        payment_instrument = {}
-
-        # Credit card model
-        creditcard = {}
-        creditcard[:number] = "4847182731147117"
-        creditcard[:expiration] = "0627"
-        creditcard[:cvv] = "361"
-
-        # Address model
-        address = {}
-        address[:line_1] = "123 Main St"
-        address[:city] = "NYC"
-        address[:state] = "NY"
-        address[:postal_code] = "92657"
-        address[:country] = "United States"
-
-        # Billing contact model
-        billing_contact = {}
-        billing_contact[:first_name] = "Test"
-        billing_contact[:last_name] = "Tester"
-        billing_contact[:address] = address
-        billing_contact[:phone] = "614-340-0823"
-        billing_contact[:email] = "test@test.com"
-
-        # Payment instrument model
-        payment_instrument[:type] = "creditcard"
-        payment_instrument[:creditcard] = creditcard
-        payment_instrument[:billing_contact] = billing_contact
-        auth[:payment_instrument] = payment_instrument
-
-        puts "Generated JSON: #{JSON.generate(auth)}"
-          
-        response = ssl_post(token_url, JSON.generate(auth), headers)
-
-        puts "Response: #{response}"
+        response = ssl_post(token_url, JSON.generate(post), headers)
         parsed = JSON.parse(response)
-
         post[:source] = parsed["id"]
       end
 
