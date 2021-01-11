@@ -3,9 +3,11 @@ class PaymentInstrumentsController < ApplicationController
 
   # GET /payment_instruments
   # GET /payment_instruments.json
-  def index
-    @payment_instruments = PaymentInstrument.all
+  def index    
+    result = @gateway.list_payment_instruments('cus_x3r5d8AiG0q2OVbpZdvRdQ')
+    @payment_instruments = JSON.parse(result.success?)
   end
+
 
   # GET /payment_instruments/1
   # GET /payment_instruments/1.json

@@ -17,6 +17,7 @@ class RemoteGloballyPaidTest < Test::Unit::TestCase
       client_invoice_id: "758496",
       currency_code: "USD"
     }
+    @customer_id = 'cus_x3r5d8AiG0q2OVbpZdvRdQ'
   end
 
   def test_successful_charge
@@ -46,6 +47,24 @@ class RemoteGloballyPaidTest < Test::Unit::TestCase
 
     assert_success customers
   end
+
+  def test_successful_create_customer
+    customer_data = {
+      'client_customer_id' => '1474692',
+      'first_name' => 'Peco',
+      'last_name' => 'Danajlovski'
+    }
+
+    new_customer = @gateway.create_customer(customer_data)
+  end
+
+  def test_successful_list_payment_instruments
+    payment_instruments = @gateway.list_payment_instruments(@customer_id)
+
+    assert_success payment_instruments
+  end  
+
+
 
   # def test_failed_authorize
   #   response = @gateway.authorize(@amount, @declined_card, @options)
