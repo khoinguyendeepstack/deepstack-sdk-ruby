@@ -2,6 +2,8 @@
 
 <h1>Payment Instruments</h1>
 
+<%= @payment_instruments.inspect %>
+
 <table>
   <thead>
     <tr>
@@ -16,13 +18,10 @@
   <tbody>
     <% @payment_instruments.each do |payment_instrument| %>
       <tr>
-        <td><%= payment_instrument.type %></td>
-        <td><%= payment_instrument.client_id %></td>
-        <td><%= payment_instrument.customer_id %></td>
-        <td><%= payment_instrument.billing_contact %></td>
-        <td><%= link_to 'Show', payment_instrument %></td>
-        <td><%= link_to 'Edit', edit_payment_instrument_path(payment_instrument) %></td>
-        <td><%= link_to 'Destroy', payment_instrument, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= payment_instrument["type"] %></td>
+        <td><%= payment_instrument["client_id"] %></td>
+        <td><%= payment_instrument["customer_id"] %></td>
+        <td><%= payment_instrument["billing_contact"] %></td>
       </tr>
     <% end %>
   </tbody>

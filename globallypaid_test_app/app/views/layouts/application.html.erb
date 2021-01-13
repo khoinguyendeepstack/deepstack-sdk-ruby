@@ -11,17 +11,15 @@
   </head>
 
   <body>
-    <div id="gpg-form"></div>
     <div class="sidebar">
-      <%# <h1>GloballyPaid Sample App</h1> %>
       <div class="logo">
         <%= image_tag "globallypaid-logo" %>
       </div>
-
       <ul>
           <li><%= link_to 'Customers', customers_path %></li>
+          <li><%= link_to 'Payments', payments_index_path %></li>
           <li><%= link_to 'Payment Instruments', payment_instruments_path %></li>
-          <%# <li>Transactions</li> %>
+          <li><%= link_to 'JS Sample', welcome_index_path %></li>
       </ul>    
     </div>
     <div class="main">

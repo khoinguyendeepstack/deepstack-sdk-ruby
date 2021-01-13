@@ -16,7 +16,6 @@ module ActiveMerchant #:nodoc:
       # Set the money format to cents
       self.money_format = :cents
 
-
       # TODO
       STANDARD_ERROR_CODE_MAPPING = {}
 
@@ -75,23 +74,27 @@ module ActiveMerchant #:nodoc:
       end
 
       def list_customers()
-        # commit('list_customers', {})
         response = ssl_get('https://qa.api.globallypaid.com/api/v1/customer', headers)
 
         Response.new(
-          # success_from(response),
-          # message_from(response),
           response,
           authorization: authorization_from(response),
-          # avs_result: AVSResult.new(code: response["cvv_result"]),
-          # cvv_result: CVVResult.new(response["avs_result"]),
           test: test?,
-          # error_code: error_code_from(response)
         )        
       end
 
-      def create_customer(customer, options={})
-        commit('create_customer', options)
+      def list_payment_instruments(customer_id)
+        response = ssl_get("https://qa.api.globallypaid.com/api/v1/paymentinstrument/list/#{customer_id}", headers)
+
+        Response.new(
+          response,
+          authorization: authorization_from(response),
+          test: test?,
+        )                
+      end
+
+      def create_customer(customer)
+        commit('create_customer', customer)
       end
 
       def get_customer(customer_id)
@@ -256,6 +259,8 @@ module ActiveMerchant #:nodoc:
           uri + "/refund"
         when "list_customers"
           uri + "/customer"
+        when "create_customer"
+          uri + "/customer"
         when "list_payment_instruments"
           uri + "/paymentinstrument/list"
         else
@@ -281,7 +286,7 @@ module ActiveMerchant #:nodoc:
 
       def add_token(post)
         # Fetch the token 
-        token_url = 'https://qa.token.globallypaid.com/api/v1/Token'
+        token_url = 'https://qa.api.globallypaid.com/api/v1/Token'
         response = ssl_post(token_url, JSON.generate(post), headers)
         parsed = JSON.parse(response)
         post[:source] = parsed["id"]
