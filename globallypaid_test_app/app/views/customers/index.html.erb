@@ -3,58 +3,60 @@
 
 <h1>Customers</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <!--
-      <th>Client</th>
-      -->
-      <th>Client customer</th>
-      <!--
-      <th>Password</th>
-      <th>Use 2fa</th>
-      <th>Country code</th>
-      <th>User 2fa</th>
-      <th>User email code</th>
-      <th>Created</th>
-      <th>Updated</th>
-      <th>Deleted</th>
-      -->
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @customers.each do |customer| %>
+<div class='wrapper'>
+  <table>
+    <thead>
       <tr>
-        <td><%= customer['id'] %></td>
-        <!-- <td><%= customer['client_id']%></td> -->
-        <td><%= customer['client_customer_id'] %></td>
+        <th>Id</th>
         <!--
-        <td><%= customer['password'] %></td>
-        <td><%= customer['use_2fa'] %></td>
-        <td><%= customer['country_code'] %></td>
-        <td><%= customer['user_2fa_id'] %></td>
-        <td><%= customer['user_email_code'] %></td>
-        <td><%= customer['created'] %></td>
-        <td><%= customer['updated'] %></td>
-        <td><%= customer['deleted'] %></td>
+        <th>Client</th>
         -->
-        <td><%= customer['first_name'] %></td>
-        <td><%= customer['last_name'] %></td>
-        <td><%= customer['phone'] %></td>
-        <td><%= customer['email'] %></td>
-
+        <th>Client customer</th>
+        <!--
+        <th>Password</th>
+        <th>Use 2fa</th>
+        <th>Country code</th>
+        <th>User 2fa</th>
+        <th>User email code</th>
+        <th>Created</th>
+        <th>Updated</th>
+        <th>Deleted</th>
+        -->
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @customers.each do |customer| %>
+        <tr>
+          <td><%= customer['id'] %></td>
+          <!-- <td><%= customer['client_id']%></td> -->
+          <td><%= customer['client_customer_id'] %></td>
+          <!--
+          <td><%= customer['password'] %></td>
+          <td><%= customer['use_2fa'] %></td>
+          <td><%= customer['country_code'] %></td>
+          <td><%= customer['user_2fa_id'] %></td>
+          <td><%= customer['user_email_code'] %></td>
+          <td><%= customer['created'] %></td>
+          <td><%= customer['updated'] %></td>
+          <td><%= customer['deleted'] %></td>
+          -->
+          <td><%= customer['first_name'] %></td>
+          <td><%= customer['last_name'] %></td>
+          <td><%= customer['phone'] %></td>
+          <td><%= customer['email'] %></td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 <br>
 
 <%= link_to 'New Customer', new_customer_path %>
+</div>

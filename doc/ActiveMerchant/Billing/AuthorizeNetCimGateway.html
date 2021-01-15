@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class ActiveMerchant::Billing::AuthorizeNetCimGateway - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-Customer+Information+Manager+-28CIM-29">Customer Information Manager (CIM)</a>
+    <li><a href="#class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-Login+and+Password">Login and Password</a>
+    <li><a href="#class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-How+to+Get+Your+API+Login+ID+and+Transaction+Key">How to Get Your API Login ID and Transaction Key</a>
+    <li><a href="#class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-Customer+Information+Manager+-28CIM-29">Customer Information Manager (CIM)</a>
+    <li><a href="#class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-Login+and+Password">Login and Password</a>
+    <li><a href="#class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-How+to+Get+Your+API+Login+ID+and+Transaction+Key">How to Get Your API Login ID and Transaction Key</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Gateway.html">ActiveMerchant::Billing::Gateway</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-create_customer_payment_profile">#create_customer_payment_profile</a>
+    
+    <li ><a href="#method-i-create_customer_profile">#create_customer_profile</a>
+    
+    <li ><a href="#method-i-create_customer_profile_transaction">#create_customer_profile_transaction</a>
+    
+    <li ><a href="#method-i-create_customer_profile_transaction_for_refund">#create_customer_profile_transaction_for_refund</a>
+    
+    <li ><a href="#method-i-create_customer_profile_transaction_for_void">#create_customer_profile_transaction_for_void</a>
+    
+    <li ><a href="#method-i-create_customer_shipping_address">#create_customer_shipping_address</a>
+    
+    <li ><a href="#method-i-delete_customer_payment_profile">#delete_customer_payment_profile</a>
+    
+    <li ><a href="#method-i-delete_customer_profile">#delete_customer_profile</a>
+    
+    <li ><a href="#method-i-delete_customer_shipping_address">#delete_customer_shipping_address</a>
+    
+    <li ><a href="#method-i-get_customer_payment_profile">#get_customer_payment_profile</a>
+    
+    <li ><a href="#method-i-get_customer_profile">#get_customer_profile</a>
+    
+    <li ><a href="#method-i-get_customer_profile_ids">#get_customer_profile_ids</a>
+    
+    <li ><a href="#method-i-get_customer_shipping_address">#get_customer_shipping_address</a>
+    
+    <li ><a href="#method-i-update_customer_payment_profile">#update_customer_payment_profile</a>
+    
+    <li ><a href="#method-i-update_customer_profile">#update_customer_profile</a>
+    
+    <li ><a href="#method-i-update_customer_shipping_address">#update_customer_shipping_address</a>
+    
+    <li ><a href="#method-i-validate_customer_payment_profile">#validate_customer_payment_profile</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-ActiveMerchant::Billing::AuthorizeNetCimGateway">
+  <h1 id="class-ActiveMerchant::Billing::AuthorizeNetCimGateway" class="class">
+    class ActiveMerchant::Billing::AuthorizeNetCimGateway
+  </h1>
+
+  <section class="description">
+    
+<h4 id="class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-Customer+Information+Manager+-28CIM-29"><a href="../../Customer.html"><code>Customer</code></a> Information Manager (CIM)<span><a href="#class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-Customer+Information+Manager+-28CIM-29">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>The Authorize.Net <a href="../../Customer.html"><code>Customer</code></a> Information Manager (CIM) is an optional additional service that allows you to store sensitive payment information on Authorize.Net&#39;s servers, simplifying payments for returning customers and recurring transactions. It can also help with Payment Card Industry (PCI) Data Security Standard compliance, since customer data is no longer stored locally.</p>
+
+<p>To use the <a href="AuthorizeNetCimGateway.html"><code>AuthorizeNetCimGateway</code></a> CIM must be enabled for your account.</p>
+
+<p>Information about CIM is available on the <a href="http://www.authorize.net/solutions/merchantsolutions/merchantservices/cim/">Authorize.Net website</a>. Information about the CIM <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> is available at the <a href="http://developer.authorize.net/">Authorize.Net Integration Center</a></p>
+
+<h4 id="class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-Login+and+Password">Login and Password<span><a href="#class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-Login+and+Password">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>The login and password are not the username and password you use to login to the Authorize.Net Merchant Interface. Instead, you will use the <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Login ID as the login and Transaction Key as the password.</p>
+
+<h4 id="class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-How+to+Get+Your+API+Login+ID+and+Transaction+Key">How to Get Your <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Login ID and Transaction Key<span><a href="#class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-How+to+Get+Your+API+Login+ID+and+Transaction+Key">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ol><li>
+<p>Log into the Merchant Interface</p>
+</li><li>
+<p>Select Settings from the Main Menu</p>
+</li><li>
+<p>Click on <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Login ID and Transaction Key in the Security section</p>
+</li><li>
+<p>Type in the answer to the secret question configured on setup</p>
+</li><li>
+<p>Click Submit</p>
+</li></ol>
+
+<h4 id="class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-Customer+Information+Manager+-28CIM-29"><a href="../../Customer.html"><code>Customer</code></a> Information Manager (CIM)<span><a href="#class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-Customer+Information+Manager+-28CIM-29">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>The Authorize.Net <a href="../../Customer.html"><code>Customer</code></a> Information Manager (CIM) is an optional additional service that allows you to store sensitive payment information on Authorize.Net&#39;s servers, simplifying payments for returning customers and recurring transactions. It can also help with Payment Card Industry (PCI) Data Security Standard compliance, since customer data is no longer stored locally.</p>
+
+<p>To use the <a href="AuthorizeNetCimGateway.html"><code>AuthorizeNetCimGateway</code></a> CIM must be enabled for your account.</p>
+
+<p>Information about CIM is available on the <a href="http://www.authorize.net/solutions/merchantsolutions/merchantservices/cim/">Authorize.Net website</a>. Information about the CIM <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> is available at the <a href="http://developer.authorize.net/">Authorize.Net Integration Center</a></p>
+
+<h4 id="class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-Login+and+Password">Login and Password<span><a href="#class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-Login+and+Password">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>The login and password are not the username and password you use to login to the Authorize.Net Merchant Interface. Instead, you will use the <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Login ID as the login and Transaction Key as the password.</p>
+
+<h4 id="class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-How+to+Get+Your+API+Login+ID+and+Transaction+Key">How to Get Your <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Login ID and Transaction Key<span><a href="#class-ActiveMerchant::Billing::AuthorizeNetCimGateway-label-How+to+Get+Your+API+Login+ID+and+Transaction+Key">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ol><li>
+<p>Log into the Merchant Interface</p>
+</li><li>
+<p>Select Settings from the Main Menu</p>
+</li><li>
+<p>Click on <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Login ID and Transaction Key in the Security section</p>
+</li><li>
+<p>Type in the answer to the secret question configured on setup</p>
+</li><li>
+<p>Click Submit</p>
+</li></ol>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="AUTHORIZE_NET_CIM_NAMESPACE">AUTHORIZE_NET_CIM_NAMESPACE
+        
+        <dd>
+        
+      
+        <dt id="BANK_ACCOUNT_TYPES">BANK_ACCOUNT_TYPES
+        
+        <dd>
+        
+      
+        <dt id="CIM_ACTIONS">CIM_ACTIONS
+        
+        <dd>
+        
+      
+        <dt id="CIM_TRANSACTION_TYPES">CIM_TRANSACTION_TYPES
+        
+        <dd>
+        
+      
+        <dt id="CIM_VALIDATION_MODES">CIM_VALIDATION_MODES
+        
+        <dd>
+        
+      
+        <dt id="ECHECK_TYPES">ECHECK_TYPES
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="AuthorizeNetCimGateway.html"><code>AuthorizeNetCimGateway</code></a></p>
+
+<p>The gateway requires that a valid <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Login ID and Transaction Key be passed in the <code>options</code> hash.</p>
+
+<h4 id="method-c-new-label-Options">Options<span><a href="#method-c-new-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:login</code> – The Authorize.Net <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Login ID (REQUIRED)</p>
+</li><li>
+<p><code>:password</code> – The Authorize.Net Transaction Key. (REQUIRED)</p>
+</li><li>
+<p><code>:test</code> – <code>true</code> or <code>false</code>. If true, perform transactions against the test server. Otherwise, perform transactions against the production server.</p>
+</li><li>
+<p><code>:test_requests</code> – <code>true</code> or <code>false</code>. If true, perform transactions without the test flag. This is useful when you need to generate card declines, AVS or CVV errors. Will hold the same value as :test by default.</p>
+</li><li>
+<p><code>:delimiter</code> – The delimiter used in the direct response.  Default is &#39;,&#39; (comma).</p>
+</li></ul>
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="Gateway.html#method-c-new"><code>ActiveMerchant::Billing::Gateway::new</code></a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 101</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:login</span>, <span class="ruby-value">:password</span>)
+  <span class="ruby-keyword">super</span>
+  <span class="ruby-ivar">@options</span>[<span class="ruby-value">:test_requests</span>] = <span class="ruby-identifier">test?</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:test_requests</span>].<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-create_customer_payment_profile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_customer_payment_profile</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new customer payment profile for an existing customer profile.</p>
+
+<h4 id="method-i-create_customer_payment_profile-label-Options">Options<span><a href="#method-i-create_customer_payment_profile-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:customer_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Profile ID of the customer the payment profile will be added to. (REQUIRED)</p>
+</li><li>
+<p><code>:payment_profile</code> – A hash containing the elements of the new payment profile (REQUIRED)</p>
+</li></ul>
+
+<h4 id="method-i-create_customer_payment_profile-label-Payment+Profile">Payment Profile<span><a href="#method-i-create_customer_payment_profile-label-Payment+Profile">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:payment</code> – A hash containing information on payment. Either :credit_card or :bank_account (REQUIRED)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="create_customer_payment_profile-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 150</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_customer_payment_profile</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:customer_profile_id</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:payment_profile</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:payment_profile</span>], <span class="ruby-value">:payment</span>)
+
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:create_customer_payment_profile</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:create_customer_payment_profile</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_customer_profile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_customer_profile</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new customer profile along with any customer payment profiles and customer shipping addresses for the customer profile.</p>
+
+<p>Returns a <a href="Response.html"><code>Response</code></a> with the <a href="../../Customer.html"><code>Customer</code></a> Profile ID of the new customer profile in the authorization field. It is <strong>CRITICAL</strong> that you save this ID. There is no way to retrieve this through the <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a>. You will not be able to create another <a href="../../Customer.html"><code>Customer</code></a> Profile with the same information.</p>
+
+<h4 id="method-i-create_customer_profile-label-Options">Options<span><a href="#method-i-create_customer_profile-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:profile</code> – A hash containing at least one of the CONDITIONAL profile options below (REQUIRED)</p>
+</li></ul>
+
+<h4 id="method-i-create_customer_profile-label-Profile">Profile<span><a href="#method-i-create_customer_profile-label-Profile">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:email</code> – Email address associated with the customer profile (CONDITIONAL)</p>
+</li><li>
+<p><code>:description</code> – Description of the customer or customer profile (CONDITIONAL)</p>
+</li><li>
+<p><code>:merchant_customer_id</code> – Merchant assigned ID for the customer (CONDITIONAL)</p>
+</li><li>
+<p><code>:payment_profile</code> – A hash containing the elements of the new payment profile (optional)</p>
+</li></ul>
+
+<h4 id="method-i-create_customer_profile-label-Payment+Profile">Payment Profile<span><a href="#method-i-create_customer_profile-label-Payment+Profile">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:payment</code> – A hash containing information on payment. Either :credit_card or :bank_account (optional)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="create_customer_profile-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 130</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_customer_profile</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:profile</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:profile</span>], <span class="ruby-value">:email</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:profile</span>][<span class="ruby-value">:merchant_customer_id</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:profile</span>][<span class="ruby-value">:description</span>]
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:profile</span>], <span class="ruby-value">:description</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:profile</span>][<span class="ruby-value">:email</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:profile</span>][<span class="ruby-value">:merchant_customer_id</span>]
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:profile</span>], <span class="ruby-value">:merchant_customer_id</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:profile</span>][<span class="ruby-value">:description</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:profile</span>][<span class="ruby-value">:email</span>]
+
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:create_customer_profile</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:create_customer_profile</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_customer_profile_transaction" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_customer_profile_transaction</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new payment transaction from an existing customer profile</p>
+
+<p>This is what is used to charge a customer whose information you have stored in a <a href="../../Customer.html"><code>Customer</code></a> Profile.</p>
+
+<p>Returns a <a href="Response.html"><code>Response</code></a> object that contains the result of the transaction in <code>params['direct_response']</code></p>
+
+<h4 id="method-i-create_customer_profile_transaction-label-Options">Options<span><a href="#method-i-create_customer_profile_transaction-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:transaction</code> – A hash containing information on the transaction that is being requested. (REQUIRED)</p>
+</li></ul>
+
+<h4 id="method-i-create_customer_profile_transaction-label-Transaction">Transaction<span><a href="#method-i-create_customer_profile_transaction-label-Transaction">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:type</code> – The type of transaction. Can be either <code>:auth_only</code>, <code>:capture_only</code>, <code>:auth_capture</code>, <code>:prior_auth_capture</code>, <code>:refund</code> or <code>:void</code>. (REQUIRED)</p>
+</li><li>
+<p><code>:amount</code> – The amount for the transaction. Formatted with a decimal. For example “4.95” (CONDITIONAL)</p>
+
+<pre>- :type == :void (NOT USED)
+- :type == :refund (OPTIONAL)
+- :type == (:auth_only, :capture_only, :auth_capture, :prior_auth_capture) (REQUIRED)</pre>
+</li><li>
+<p><code>:customer_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Profile ID of the customer to use in this transaction. (CONDITIONAL)</p>
+
+<pre>- :type == (:void, :prior_auth_capture) (OPTIONAL)
+- :type == :refund (CONDITIONAL - required if masked information is not being submitted [see below])
+- :type == (:auth_only, :capture_only, :auth_capture) (REQUIRED)</pre>
+</li><li>
+<p><code>:customer_payment_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Payment Profile ID of the <a href="../../Customer.html"><code>Customer</code></a> Payment Profile to use in this transaction. (CONDITIONAL)</p>
+
+<pre>- :type == (:void, :prior_auth_capture) (OPTIONAL)
+- :type == :refund (CONDITIONAL - required if masked information is not being submitted [see below])
+- :type == (:auth_only, :capture_only, :auth_capture) (REQUIRED)</pre>
+</li><li>
+<p><code>:trans_id</code> – The payment gateway assigned transaction ID of the original transaction (CONDITIONAL):</p>
+
+<pre>- :type = (:void, :refund, :prior_auth_capture) (REQUIRED)
+- :type = (:auth_only, :capture_only, :auth_capture) (NOT USED)</pre>
+</li><li>
+<p><code>:card_code</code> – CVV/CCV code (OPTIONAL)</p>
+
+<pre>- :type = (:void, :refund, :prior_auth_capture) (NOT USED)
+- :type = (:auth_only, :capture_only, :auth_capture) (OPTIONAL)</pre>
+</li><li>
+<p><code>:recurring_billing</code> – The recurring billing status (OPTIONAL)</p>
+
+<pre>- :type = (:void, :refund, :prior_auth_capture) (NOT USED)
+- :type = (:auth_only, :capture_only, :auth_capture) (OPTIONAL)</pre>
+</li><li>
+<p><code>:customer_shipping_address_id</code> – Payment gateway assigned ID associated with the customer shipping address (CONDITIONAL)</p>
+
+<pre>- :type = (:void, :refund) (OPTIONAL)
+- :type = (:auth_only, :capture_only, :auth_capture) (NOT USED)
+- :type = (:prior_auth_capture) (OPTIONAL)</pre>
+</li></ul>
+
+<h4 id="method-i-create_customer_profile_transaction-label-For+-3Atype+-3D-3D+-3Arefund+only">For :type == :refund only<span><a href="#method-i-create_customer_profile_transaction-label-For+-3Atype+-3D-3D+-3Arefund+only">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:credit_card_number_masked</code> – (CONDITIONAL - required for credit card refunds if :customer_profile_id AND :customer_payment_profile_id are missing)</p>
+</li><li>
+<p><code>:bank_routing_number_masked &amp;&amp; :bank_account_number_masked</code> – (CONDITIONAL - required for electronic check refunds if :customer_profile_id AND :customer_payment_profile_id are missing) (NOT ABLE TO TEST - I keep getting “ACH transactions are not accepted by this merchant.” when trying to make a payment and, until that&#39;s possible I can&#39;t refund (wiseleyb@gmail.com))</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="create_customer_profile_transaction-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 378</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_customer_profile_transaction</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:transaction</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:transaction</span>], <span class="ruby-value">:type</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:transaction</span>][<span class="ruby-value">:type</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:void</span>
+    <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:transaction</span>], <span class="ruby-value">:trans_id</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:refund</span>
+    <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:transaction</span>], <span class="ruby-value">:trans_id</span>) <span class="ruby-operator">&amp;&amp;</span>
+      (
+        (<span class="ruby-identifier">options</span>[<span class="ruby-value">:transaction</span>][<span class="ruby-value">:customer_profile_id</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:transaction</span>][<span class="ruby-value">:customer_payment_profile_id</span>]) <span class="ruby-operator">||</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-value">:transaction</span>][<span class="ruby-value">:credit_card_number_masked</span>] <span class="ruby-operator">||</span>
+        (<span class="ruby-identifier">options</span>[<span class="ruby-value">:transaction</span>][<span class="ruby-value">:bank_routing_number_masked</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:transaction</span>][<span class="ruby-value">:bank_account_number_masked</span>])
+      )
+  <span class="ruby-keyword">when</span> <span class="ruby-value">:prior_auth_capture</span>
+    <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:transaction</span>], <span class="ruby-value">:amount</span>, <span class="ruby-value">:trans_id</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:transaction</span>], <span class="ruby-value">:amount</span>, <span class="ruby-value">:customer_profile_id</span>, <span class="ruby-value">:customer_payment_profile_id</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:create_customer_profile_transaction</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:create_customer_profile_transaction</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_customer_profile_transaction_for_refund" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_customer_profile_transaction_for_refund</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new payment transaction for refund from an existing customer profile</p>
+
+<p>This is what is used to refund a transaction you have stored in a <a href="../../Customer.html"><code>Customer</code></a> Profile.</p>
+
+<p>Returns a <a href="Response.html"><code>Response</code></a> object that contains the result of the transaction in <code>params['direct_response']</code></p>
+
+<h4 id="method-i-create_customer_profile_transaction_for_refund-label-Options">Options<span><a href="#method-i-create_customer_profile_transaction_for_refund-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:transaction</code> – A hash containing information on the transaction that is being requested. (REQUIRED)</p>
+</li></ul>
+
+<h4 id="method-i-create_customer_profile_transaction_for_refund-label-Transaction">Transaction<span><a href="#method-i-create_customer_profile_transaction_for_refund-label-Transaction">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:amount</code> – The total amount to be refunded (REQUIRED)</p>
+</li><li>
+<p><code>:customer_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Profile ID of the customer to use in this transaction. (CONDITIONAL :customer_payment_profile_id must be included if used)</p>
+</li><li>
+<p><code>:customer_payment_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Payment Profile ID of the <a href="../../Customer.html"><code>Customer</code></a> Payment Profile to use in this transaction. (CONDITIONAL :customer_profile_id must be included if used)</p>
+</li><li>
+<p><code>:credit_card_number_masked</code> – Four Xs followed by the last four digits of the credit card (CONDITIONAL - used if customer_profile_id and customer_payment_profile_id aren&#39;t given)</p>
+</li><li>
+<p><code>:bank_routing_number_masked</code> – The last four digits of the routing number to be refunded (CONDITIONAL - must be used with :bank_account_number_masked)</p>
+</li><li>
+<p><code>:bank_account_number_masked</code> – The last four digits of the bank account number to be refunded, Ex. XXXX1234 (CONDITIONAL - must be used with :bank_routing_number_masked)</p>
+</li><li>
+<p><code>:tax</code> - A hash containing tax information for the refund (OPTIONAL - <code>:amount</code>, <code>:name</code> (31 characters), <code>:description</code> (255 characters))</p>
+</li><li>
+<p><code>:duty</code> - A hash containing duty information for the refund (OPTIONAL - <code>:amount</code>, <code>:name</code> (31 characters), <code>:description</code> (255 characters))</p>
+</li><li>
+<p><code>:shipping</code> - A hash containing shipping information for the refund (OPTIONAL - <code>:amount</code>, <code>:name</code> (31 characters), <code>:description</code> (255 characters))</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="create_customer_profile_transaction_for_refund-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 425</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_customer_profile_transaction_for_refund</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:transaction</span>)
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:transaction</span>][<span class="ruby-value">:type</span>] = <span class="ruby-value">:refund</span>
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:transaction</span>], <span class="ruby-value">:trans_id</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:transaction</span>], <span class="ruby-value">:amount</span>)
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:create_customer_profile_transaction</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:create_customer_profile_transaction</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_customer_profile_transaction_for_void" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_customer_profile_transaction_for_void</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new payment transaction for void from an existing customer profile</p>
+
+<p>This is what is used to void a transaction you have stored in a <a href="../../Customer.html"><code>Customer</code></a> Profile.</p>
+
+<p>Returns a <a href="Response.html"><code>Response</code></a> object that contains the result of the transaction in <code>params['direct_response']</code></p>
+
+<h4 id="method-i-create_customer_profile_transaction_for_void-label-Options">Options<span><a href="#method-i-create_customer_profile_transaction_for_void-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:transaction</code> – A hash containing information on the transaction that is being requested. (REQUIRED)</p>
+</li></ul>
+
+<h4 id="method-i-create_customer_profile_transaction_for_void-label-Transaction">Transaction<span><a href="#method-i-create_customer_profile_transaction_for_void-label-Transaction">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:trans_id</code> – The payment gateway assigned transaction id of the original transaction. (REQUIRED)</p>
+</li><li>
+<p><code>:customer_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Profile ID of the customer to use in this transaction.</p>
+</li><li>
+<p><code>:customer_payment_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Payment Profile ID of the <a href="../../Customer.html"><code>Customer</code></a> Payment Profile to use in this transaction.</p>
+</li><li>
+<p><code>:customer_shipping_address_id</code> – Payment gateway assigned ID associated with the customer shipping address.</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="create_customer_profile_transaction_for_void-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 450</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_customer_profile_transaction_for_void</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:transaction</span>)
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:transaction</span>][<span class="ruby-value">:type</span>] = <span class="ruby-value">:void</span>
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:transaction</span>], <span class="ruby-value">:trans_id</span>)
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:create_customer_profile_transaction</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:create_customer_profile_transaction</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-create_customer_shipping_address" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_customer_shipping_address</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new customer shipping address for an existing customer profile.</p>
+
+<h4 id="method-i-create_customer_shipping_address-label-Options">Options<span><a href="#method-i-create_customer_shipping_address-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:customer_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Profile ID of the customer the payment profile will be added to. (REQUIRED)</p>
+</li><li>
+<p><code>:address</code> – A hash containing the elements of the shipping address (REQUIRED)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="create_customer_shipping_address-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 165</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create_customer_shipping_address</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:customer_profile_id</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:address</span>)
+
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:create_customer_shipping_address</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:create_customer_shipping_address</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-delete_customer_payment_profile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete_customer_payment_profile</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Deletes a customer payment profile from an existing customer profile.</p>
+
+<h4 id="method-i-delete_customer_payment_profile-label-Options">Options<span><a href="#method-i-delete_customer_payment_profile-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:customer_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Profile ID of the customer with the payment profile to be deleted. (REQUIRED)</p>
+</li><li>
+<p><code>:customer_payment_profile_id</code> – The Payment Profile ID of the payment profile to be deleted. (REQUIRED)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="delete_customer_payment_profile-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 191</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">delete_customer_payment_profile</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:customer_profile_id</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:customer_payment_profile_id</span>)
+
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:delete_customer_payment_profile</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:delete_customer_payment_profile</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-delete_customer_profile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete_customer_profile</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Deletes an existing customer profile along with all associated customer payment profiles and customer shipping addresses.</p>
+
+<h4 id="method-i-delete_customer_profile-label-Options">Options<span><a href="#method-i-delete_customer_profile-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:customer_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Profile ID of the customer to be deleted. (REQUIRED)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="delete_customer_profile-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 178</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">delete_customer_profile</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:customer_profile_id</span>)
+
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:delete_customer_profile</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:delete_customer_profile</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-delete_customer_shipping_address" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete_customer_shipping_address</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Deletes a customer shipping address from an existing customer profile.</p>
+
+<h4 id="method-i-delete_customer_shipping_address-label-Options">Options<span><a href="#method-i-delete_customer_shipping_address-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:customer_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Profile ID of the customer with the payment profile to be deleted. (REQUIRED)</p>
+</li><li>
+<p><code>:customer_address_id</code> – The Shipping Address ID of the shipping address to be deleted. (REQUIRED)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="delete_customer_shipping_address-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 205</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">delete_customer_shipping_address</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:customer_profile_id</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:customer_address_id</span>)
+
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:delete_customer_shipping_address</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:delete_customer_shipping_address</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_customer_payment_profile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_customer_payment_profile</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Retrieve a customer payment profile for an existing customer profile.</p>
+
+<p>Returns a <a href="Response.html"><code>Response</code></a> whose params hash contains all the payment profile information. Sensitive information such as credit card numbers will be masked.</p>
+
+<h4 id="method-i-get_customer_payment_profile-label-Options">Options<span><a href="#method-i-get_customer_payment_profile-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:customer_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Profile ID of the customer with the payment profile to be retrieved. (REQUIRED)</p>
+</li><li>
+<p><code>:customer_payment_profile_id</code> – The Payment Profile ID of the payment profile to be retrieved. (REQUIRED)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="get_customer_payment_profile-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 241</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_customer_payment_profile</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:customer_profile_id</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:customer_payment_profile_id</span>)
+
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:get_customer_payment_profile</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:get_customer_payment_profile</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_customer_profile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_customer_profile</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Retrieves an existing customer profile along with all the associated customer payment profiles and customer shipping addresses.</p>
+
+<p>Returns a <a href="Response.html"><code>Response</code></a> whose params hash contains all the profile information.</p>
+
+<h4 id="method-i-get_customer_profile-label-Options">Options<span><a href="#method-i-get_customer_profile-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:customer_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Profile ID of the customer to retrieve. (REQUIRED)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="get_customer_profile-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 220</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_customer_profile</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:customer_profile_id</span>)
+
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:get_customer_profile</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:get_customer_profile</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_customer_profile_ids" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_customer_profile_ids</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_customer_profile_ids-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 227</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_customer_profile_ids</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:get_customer_profile_ids</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:get_customer_profile_ids</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_customer_shipping_address" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_customer_shipping_address</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Retrieve a customer shipping address for an existing customer profile.</p>
+
+<p>Returns a <a href="Response.html"><code>Response</code></a> whose params hash contains all the shipping address information.</p>
+
+<h4 id="method-i-get_customer_shipping_address-label-Options">Options<span><a href="#method-i-get_customer_shipping_address-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:customer_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Profile ID of the customer with the payment profile to be retrieved. (REQUIRED)</p>
+</li><li>
+<p><code>:customer_address_id</code> – The Shipping Address ID of the shipping address to be retrieved. (REQUIRED)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="get_customer_shipping_address-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 257</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">get_customer_shipping_address</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:customer_profile_id</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:customer_address_id</span>)
+
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:get_customer_shipping_address</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:get_customer_shipping_address</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update_customer_payment_profile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_customer_payment_profile</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Updates a customer payment profile for an existing customer profile.</p>
+
+<p>Warning: if you do not provide a parameter in the <code>:payment_profile</code> hash, it is automatically set to nil at Authorize.Net. You will most likely want to first get the profile hash using <a href="AuthorizeNetCimGateway.html#method-i-get_customer_payment_profile"><code>get_customer_payment_profile</code></a> and then only change the elements you wish to change.</p>
+
+<h4 id="method-i-update_customer_payment_profile-label-Options">Options<span><a href="#method-i-update_customer_payment_profile-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:customer_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Profile ID of the customer with the payment profile to be updated. (REQUIRED)</p>
+</li><li>
+<p><code>:payment_profile</code> – A hash containing the values the <a href="../../Customer.html"><code>Customer</code></a> Payment Profile should be updated to. (REQUIRED)</p>
+</li></ul>
+
+<h4 id="method-i-update_customer_payment_profile-label-Payment+Profile">Payment Profile<span><a href="#method-i-update_customer_payment_profile-label-Payment+Profile">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:customer_payment_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Payment Profile ID of the <a href="../../Customer.html"><code>Customer</code></a> Payment Profile to update. (REQUIRED)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="update_customer_payment_profile-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 300</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update_customer_payment_profile</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:customer_profile_id</span>, <span class="ruby-value">:payment_profile</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:payment_profile</span>], <span class="ruby-value">:customer_payment_profile_id</span>)
+
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:update_customer_payment_profile</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:update_customer_payment_profile</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update_customer_profile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_customer_profile</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Updates an existing customer profile.</p>
+
+<p>Warning: if you do not provide a parameter in the <code>:payment_profile</code> hash, it is automatically set to nil at Authorize.Net. You will most likely want to first get the profile hash using <a href="AuthorizeNetCimGateway.html#method-i-get_customer_profile"><code>get_customer_profile</code></a> and then only change the elements you wish to change.</p>
+
+<h4 id="method-i-update_customer_profile-label-Options">Options<span><a href="#method-i-update_customer_profile-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:profile</code> – A hash containing the values the <a href="../../Customer.html"><code>Customer</code></a> Profile should be updated to. (REQUIRED)</p>
+</li></ul>
+
+<h4 id="method-i-update_customer_profile-label-Profile">Profile<span><a href="#method-i-update_customer_profile-label-Profile">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:customer_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Profile ID of the customer profile to update. (REQUIRED)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="update_customer_profile-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 278</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update_customer_profile</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:profile</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:profile</span>], <span class="ruby-value">:customer_profile_id</span>)
+
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:update_customer_profile</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:update_customer_profile</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update_customer_shipping_address" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_customer_shipping_address</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Updates a customer shipping address for an existing customer profile.</p>
+
+<p>Warning: if you do not provide a parameter in the <code>:address</code> hash, it is automatically set to nil at Authorize.Net. You will most likely want to first get the profile hash using <a href="AuthorizeNetCimGateway.html#method-i-get_customer_shipping_address"><code>get_customer_shipping_address</code></a> and then only change the elements you wish to change.</p>
+
+<h4 id="method-i-update_customer_shipping_address-label-Options">Options<span><a href="#method-i-update_customer_shipping_address-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:customer_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Profile ID of the customer with the payment profile to be updated. (REQUIRED)</p>
+</li><li>
+<p><code>:address</code> – A hash containing the values the <a href="../../Customer.html"><code>Customer</code></a> Shipping Address should be updated to. (REQUIRED)</p>
+</li></ul>
+
+<h4 id="method-i-update_customer_shipping_address-label-Address">Address<span><a href="#method-i-update_customer_shipping_address-label-Address">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:customer_address_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Address ID of the <a href="../../Customer.html"><code>Customer</code></a> Payment Profile to update. (REQUIRED)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="update_customer_shipping_address-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 322</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update_customer_shipping_address</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:customer_profile_id</span>, <span class="ruby-value">:address</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:address</span>], <span class="ruby-value">:customer_address_id</span>)
+
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:update_customer_shipping_address</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:update_customer_shipping_address</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-validate_customer_payment_profile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_customer_payment_profile</span><span
+            class="method-args">(options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Verifies an existing customer payment profile by generating a test transaction</p>
+
+<p>Returns a <a href="Response.html"><code>Response</code></a> object that contains the result of the transaction in <code>params['direct_response']</code></p>
+
+<h4 id="method-i-validate_customer_payment_profile-label-Options">Options<span><a href="#method-i-validate_customer_payment_profile-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:customer_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Profile ID of the customer to use in this transaction. (REQUIRED)</p>
+</li><li>
+<p><code>:customer_payment_profile_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Payment Profile ID of the <a href="../../Customer.html"><code>Customer</code></a> Payment Profile to be verified. (REQUIRED)</p>
+</li><li>
+<p><code>:customer_address_id</code> – The <a href="../../Customer.html"><code>Customer</code></a> Address ID of the <a href="../../Customer.html"><code>Customer</code></a> Shipping Address to be verified. (OPTIONAL)</p>
+</li><li>
+<p><code>:card_code</code> – If the payment profile is a credit card, the CCV/CVV code to validate with (OPTIONAL)</p>
+</li><li>
+<p><code>:validation_mode</code> – <code>:live</code> or <code>:test</code> In Test Mode, only field validation is performed. (REQUIRED In Live Mode, a transaction is generated and submitted to the processor with the amount of $0.01. If successful, the transaction is immediately voided. (REQUIRED)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="validate_customer_payment_profile-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/authorize_net_cim.rb, line 470</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">validate_customer_payment_profile</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:customer_profile_id</span>, <span class="ruby-value">:customer_payment_profile_id</span>, <span class="ruby-value">:validation_mode</span>)
+
+  <span class="ruby-identifier">request</span> = <span class="ruby-identifier">build_request</span>(<span class="ruby-value">:validate_customer_payment_profile</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-value">:validate_customer_payment_profile</span>, <span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

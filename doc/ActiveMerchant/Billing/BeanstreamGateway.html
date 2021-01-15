@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class ActiveMerchant::Billing::BeanstreamGateway - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-ActiveMerchant::Billing::BeanstreamGateway-label-Supported+transaction+types+by+Beanstream-3A">Supported transaction types by Beanstream:</a>
+    <li><a href="#class-ActiveMerchant::Billing::BeanstreamGateway-label-Secure+Payment+Profiles-3A">Secure Payment Profiles:</a>
+    <li><a href="#class-ActiveMerchant::Billing::BeanstreamGateway-label-Notes">Notes</a>
+    <li><a href="#class-ActiveMerchant::Billing::BeanstreamGateway-label-Supported+transaction+types+by+Beanstream-3A">Supported transaction types by Beanstream:</a>
+    <li><a href="#class-ActiveMerchant::Billing::BeanstreamGateway-label-Secure+Payment+Profiles-3A">Secure Payment Profiles:</a>
+    <li><a href="#class-ActiveMerchant::Billing::BeanstreamGateway-label-Notes">Notes</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Gateway.html">ActiveMerchant::Billing::Gateway</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="BeanstreamCore.html">ActiveMerchant::Billing::BeanstreamCore</a>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-authorize">#authorize</a>
+    
+    <li ><a href="#method-i-cancel_recurring">#cancel_recurring</a>
+    
+    <li ><a href="#method-i-delete">#delete</a>
+    
+    <li ><a href="#method-i-interac">#interac</a>
+    
+    <li ><a href="#method-i-purchase">#purchase</a>
+    
+    <li ><a href="#method-i-recurring">#recurring</a>
+    
+    <li ><a href="#method-i-scrub">#scrub</a>
+    
+    <li ><a href="#method-i-store">#store</a>
+    
+    <li ><a href="#method-i-success-3F">#success?</a>
+    
+    <li ><a href="#method-i-supports_scrubbing-3F">#supports_scrubbing?</a>
+    
+    <li ><a href="#method-i-unstore">#unstore</a>
+    
+    <li ><a href="#method-i-update">#update</a>
+    
+    <li ><a href="#method-i-update_recurring">#update_recurring</a>
+    
+    <li ><a href="#method-i-verify">#verify</a>
+    
+    <li ><a href="#method-i-void">#void</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-ActiveMerchant::Billing::BeanstreamGateway">
+  <h1 id="class-ActiveMerchant::Billing::BeanstreamGateway" class="class">
+    class ActiveMerchant::Billing::BeanstreamGateway
+  </h1>
+
+  <section class="description">
+    
+<p>This class implements the Canadian <a href="http://www.beanstream.com">Beanstream</a> payment gateway. It is also named TD Canada Trust Online Mart payment gateway. To learn more about the specification of Beanstream gateway, please read the OM_Direct_Interface_API.pdf, which you can get from your Beanstream account or get from me by email.</p>
+
+<h2 id="class-ActiveMerchant::Billing::BeanstreamGateway-label-Supported+transaction+types+by+Beanstream-3A">Supported transaction types by Beanstream:<span><a href="#class-ActiveMerchant::Billing::BeanstreamGateway-label-Supported+transaction+types+by+Beanstream-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p><code>P</code> - Purchase</p>
+</li><li>
+<p><code>PA</code> - Pre Authorization</p>
+</li><li>
+<p><code>PAC</code> - Pre Authorization Completion</p>
+</li></ul>
+
+<h2 id="class-ActiveMerchant::Billing::BeanstreamGateway-label-Secure+Payment+Profiles-3A">Secure Payment Profiles:<span><a href="#class-ActiveMerchant::Billing::BeanstreamGateway-label-Secure+Payment+Profiles-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>BeanStream supports payment profiles (vaults). This allows you to store cc information with BeanStream and process subsequent transactions with a customer id. Secure Payment Profiles must be enabled on your account (must be done over the phone). Your <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Access Passcode must be set in Administration =&gt; account settings =&gt; order settings. To learn more about storing credit cards with the Beanstream gateway, documentation can be found at <a href="http://developer.beanstream.com/documentation/classic-apis">developer.beanstream.com/documentation/classic-apis</a></p>
+
+<p>To store a credit card using Beanstream&#39;s Legato Javascript Library (<a href="http://developer.beanstream.com/documentation/legato">developer.beanstream.com/documentation/legato</a>) you must pass the singleUseToken in the store method&#39;s option parameter. Example: @gateway.store(“gt6-0c78c25b-3637-4ba0-90e2-26105287f198”)</p>
+
+<h2 id="class-ActiveMerchant::Billing::BeanstreamGateway-label-Notes">Notes<span><a href="#class-ActiveMerchant::Billing::BeanstreamGateway-label-Notes">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Adding of order products information is not implemented.</p>
+</li><li>
+<p>Ensure that country and province data is provided as a code such as “CA”, “US”, “QC”.</p>
+</li><li>
+<p>login is the Beanstream merchant ID, username and password should be enabled in your Beanstream account and passed in using the <code>:user</code> and <code>:password</code> options.</p>
+</li><li>
+<p>Test your app with your true merchant id and test credit card information provided in the api pdf document.</p>
+</li><li>
+<p>Beanstream does not allow Payment Profiles to be deleted with their <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a>. The accounts are &#39;closed&#39;, but have to be deleted manually.</p>
+</li></ul>
+
+<pre>Example authorization (Beanstream PA transaction type):
+
+ twenty = 2000
+ gateway = BeanstreamGateway.new(
+   :login =&gt; &#39;100200000&#39;,
+   :user =&gt; &#39;xiaobozz&#39;,
+   :password =&gt; &#39;password&#39;
+ )
+
+ credit_card = CreditCard.new(
+   :number =&gt; &#39;4030000010001234&#39;,
+   :month =&gt; 8,
+   :year =&gt; 2011,
+   :first_name =&gt; &#39;xiaobo&#39;,
+   :last_name =&gt; &#39;zzz&#39;,
+   :verification_value =&gt; 137
+ )
+ response = gateway.authorize(twenty, credit_card,
+   :order_id =&gt; &#39;1234&#39;,
+   :billing_address =&gt; {
+     :name =&gt; &#39;xiaobo zzz&#39;,
+     :phone =&gt; &#39;555-555-5555&#39;,
+     :address1 =&gt; &#39;1234 Levesque St.&#39;,
+     :address2 =&gt; &#39;Apt B&#39;,
+     :city =&gt; &#39;Montreal&#39;,
+     :state =&gt; &#39;QC&#39;,
+     :country =&gt; &#39;CA&#39;,
+     :zip =&gt; &#39;H2C1X8&#39;
+   },
+   :email =&gt; &#39;xiaobozzz@example.com&#39;,
+   :subtotal =&gt; 800,
+   :shipping =&gt; 100,
+   :tax1 =&gt; 100,
+   :tax2 =&gt; 100,
+   :custom =&gt; &#39;reference one&#39;
+ )</pre>
+
+<p>This class implements the Canadian <a href="http://www.beanstream.com">Beanstream</a> payment gateway. It is also named TD Canada Trust Online Mart payment gateway. To learn more about the specification of Beanstream gateway, please read the OM_Direct_Interface_API.pdf, which you can get from your Beanstream account or get from me by email.</p>
+
+<h2 id="class-ActiveMerchant::Billing::BeanstreamGateway-label-Supported+transaction+types+by+Beanstream-3A">Supported transaction types by Beanstream:<span><a href="#class-ActiveMerchant::Billing::BeanstreamGateway-label-Supported+transaction+types+by+Beanstream-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p><code>P</code> - Purchase</p>
+</li><li>
+<p><code>PA</code> - Pre Authorization</p>
+</li><li>
+<p><code>PAC</code> - Pre Authorization Completion</p>
+</li></ul>
+
+<h2 id="class-ActiveMerchant::Billing::BeanstreamGateway-label-Secure+Payment+Profiles-3A">Secure Payment Profiles:<span><a href="#class-ActiveMerchant::Billing::BeanstreamGateway-label-Secure+Payment+Profiles-3A">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>BeanStream supports payment profiles (vaults). This allows you to store cc information with BeanStream and process subsequent transactions with a customer id. Secure Payment Profiles must be enabled on your account (must be done over the phone). Your <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Access Passcode must be set in Administration =&gt; account settings =&gt; order settings. To learn more about storing credit cards with the Beanstream gateway, documentation can be found at <a href="http://developer.beanstream.com/documentation/classic-apis">developer.beanstream.com/documentation/classic-apis</a></p>
+
+<p>To store a credit card using Beanstream&#39;s Legato Javascript Library (<a href="http://developer.beanstream.com/documentation/legato">developer.beanstream.com/documentation/legato</a>) you must pass the singleUseToken in the store method&#39;s option parameter. Example: @gateway.store(“gt6-0c78c25b-3637-4ba0-90e2-26105287f198”)</p>
+
+<h2 id="class-ActiveMerchant::Billing::BeanstreamGateway-label-Notes">Notes<span><a href="#class-ActiveMerchant::Billing::BeanstreamGateway-label-Notes">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p>Adding of order products information is not implemented.</p>
+</li><li>
+<p>Ensure that country and province data is provided as a code such as “CA”, “US”, “QC”.</p>
+</li><li>
+<p>login is the Beanstream merchant ID, username and password should be enabled in your Beanstream account and passed in using the <code>:user</code> and <code>:password</code> options.</p>
+</li><li>
+<p>Test your app with your true merchant id and test credit card information provided in the api pdf document.</p>
+</li><li>
+<p>Beanstream does not allow Payment Profiles to be deleted with their <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a>. The accounts are &#39;closed&#39;, but have to be deleted manually.</p>
+</li></ul>
+
+<pre>Example authorization (Beanstream PA transaction type):
+
+ twenty = 2000
+ gateway = BeanstreamGateway.new(
+   :login =&gt; &#39;100200000&#39;,
+   :user =&gt; &#39;xiaobozz&#39;,
+   :password =&gt; &#39;password&#39;
+ )
+
+ credit_card = CreditCard.new(
+   :number =&gt; &#39;4030000010001234&#39;,
+   :month =&gt; 8,
+   :year =&gt; 2011,
+   :first_name =&gt; &#39;xiaobo&#39;,
+   :last_name =&gt; &#39;zzz&#39;,
+   :verification_value =&gt; 137
+ )
+ response = gateway.authorize(twenty, credit_card,
+   :order_id =&gt; &#39;1234&#39;,
+   :billing_address =&gt; {
+     :name =&gt; &#39;xiaobo zzz&#39;,
+     :phone =&gt; &#39;555-555-5555&#39;,
+     :address1 =&gt; &#39;1234 Levesque St.&#39;,
+     :address2 =&gt; &#39;Apt B&#39;,
+     :city =&gt; &#39;Montreal&#39;,
+     :state =&gt; &#39;QC&#39;,
+     :country =&gt; &#39;CA&#39;,
+     :zip =&gt; &#39;H2C1X8&#39;
+   },
+   :email =&gt; &#39;xiaobozzz@example.com&#39;,
+   :subtotal =&gt; 800,
+   :shipping =&gt; 100,
+   :tax1 =&gt; 100,
+   :tax2 =&gt; 100,
+   :custom =&gt; &#39;reference one&#39;
+ )</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-authorize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">authorize</span><span
+            class="method-args">(money, source, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="authorize-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/beanstream.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">authorize</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">add_amount</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">money</span>)
+  <span class="ruby-identifier">add_invoice</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_source</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">source</span>)
+  <span class="ruby-identifier">add_address</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_transaction_type</span>(<span class="ruby-identifier">post</span>, <span class="ruby-value">:authorization</span>)
+  <span class="ruby-identifier">add_customer_ip</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_recurring_payment</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-identifier">post</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-cancel_recurring" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cancel_recurring</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="cancel_recurring-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/beanstream.rb, line 144</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">cancel_recurring</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-constant">ActiveMerchant</span>.<span class="ruby-identifier">deprecated</span> <span class="ruby-constant">RECURRING_DEPRECATION_MESSAGE</span>
+
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">add_recurring_operation_type</span>(<span class="ruby-identifier">post</span>, <span class="ruby-value">:cancel</span>)
+  <span class="ruby-identifier">add_recurring_service</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">recurring_commit</span>(<span class="ruby-identifier">post</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-delete" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete</span><span
+            class="method-args">(vault_id)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>can&#39;t actually delete a secure profile with the supplicated <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a>. This function sets the status of the profile to closed (C). Closed profiles will have to removed manually.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="delete-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/beanstream.rb, line 177</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">delete</span>(<span class="ruby-identifier">vault_id</span>)
+  <span class="ruby-identifier">update</span>(<span class="ruby-identifier">vault_id</span>, <span class="ruby-keyword">false</span>, { <span class="ruby-value">status:</span> <span class="ruby-string">&#39;C&#39;</span> })
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="BeanstreamGateway.html#method-i-unstore">unstore</a>, unstore
+        </div>
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-interac" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">interac</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="interac-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/beanstream.rb, line 153</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">interac</span>
+  <span class="ruby-ivar">@interac</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">BeanstreamInteracGateway</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-purchase" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">purchase</span><span
+            class="method-args">(money, source, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="purchase-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/beanstream.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">purchase</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">add_amount</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">money</span>)
+  <span class="ruby-identifier">add_invoice</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_source</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">source</span>)
+  <span class="ruby-identifier">add_address</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_transaction_type</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">purchase_action</span>(<span class="ruby-identifier">source</span>))
+  <span class="ruby-identifier">add_customer_ip</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_recurring_payment</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-identifier">post</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-recurring" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">recurring</span><span
+            class="method-args">(money, source, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="recurring-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/beanstream.rb, line 118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">recurring</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-constant">ActiveMerchant</span>.<span class="ruby-identifier">deprecated</span> <span class="ruby-constant">RECURRING_DEPRECATION_MESSAGE</span>
+
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">add_amount</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">money</span>)
+  <span class="ruby-identifier">add_invoice</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_credit_card</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">source</span>)
+  <span class="ruby-identifier">add_address</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_transaction_type</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">purchase_action</span>(<span class="ruby-identifier">source</span>))
+  <span class="ruby-identifier">add_recurring_type</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-identifier">post</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-scrub" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">scrub</span><span
+            class="method-args">(transcript)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="scrub-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/beanstream.rb, line 204</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">scrub</span>(<span class="ruby-identifier">transcript</span>)
+  <span class="ruby-identifier">transcript</span>.
+    <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r((Authorization: Basic )\w+)</span>, <span class="ruby-string">&#39;\1[FILTERED]&#39;</span>).
+    <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/(&amp;?password=)[^&amp;\s]*(&amp;?)/</span>, <span class="ruby-string">&#39;\1[FILTERED]\2&#39;</span>).
+    <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/(&amp;?passcode=)[^&amp;\s]*(&amp;?)/</span>, <span class="ruby-string">&#39;\1[FILTERED]\2&#39;</span>).
+    <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/(&amp;?trnCardCvd=)\d*(&amp;?)/</span>, <span class="ruby-string">&#39;\1[FILTERED]\2&#39;</span>).
+    <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/(&amp;?trnCardNumber=)\d*(&amp;?)/</span>, <span class="ruby-string">&#39;\1[FILTERED]\2&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-store" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">store</span><span
+            class="method-args">(payment_method, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>To match the other stored-value gateways, like TrustCommerce, store and unstore need to be defined</p>
+
+<p>When passing a single-use token the :name option is required</p>
+          
+          
+
+          
+          <div class="method-source-code" id="store-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/beanstream.rb, line 161</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">store</span>(<span class="ruby-identifier">payment_method</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">add_address</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">payment_method</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:number</span>)
+    <span class="ruby-identifier">add_credit_card</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">payment_method</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">post</span>[<span class="ruby-value">:singleUseToken</span>] = <span class="ruby-identifier">payment_method</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">add_secure_profile_variables</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+
+  <span class="ruby-identifier">commit</span>(<span class="ruby-identifier">post</span>, <span class="ruby-keyword">true</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-success-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">success?</span><span
+            class="method-args">(response)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="success-3F-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/beanstream.rb, line 114</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">success?</span>(<span class="ruby-identifier">response</span>)
+  <span class="ruby-identifier">response</span>[<span class="ruby-value">:trnApproved</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;1&#39;</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">response</span>[<span class="ruby-value">:responseCode</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;1&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-supports_scrubbing-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">supports_scrubbing?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="supports_scrubbing-3F-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/beanstream.rb, line 200</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">supports_scrubbing?</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-unstore" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">unstore</span><span
+            class="method-args">(vault_id)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="BeanstreamGateway.html#method-i-delete">delete</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="method-i-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">(vault_id, payment_method, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Update the values (such as CC expiration) stored at the gateway.  The CC number must be supplied in the <a href="CreditCard.html"><code>CreditCard</code></a> object.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/beanstream.rb, line 186</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>(<span class="ruby-identifier">vault_id</span>, <span class="ruby-identifier">payment_method</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">add_address</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">payment_method</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:number</span>)
+    <span class="ruby-identifier">add_credit_card</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">payment_method</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">post</span>[<span class="ruby-value">:singleUseToken</span>] = <span class="ruby-identifier">payment_method</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vault_id</span>] = <span class="ruby-identifier">vault_id</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:operation</span>] = <span class="ruby-identifier">secure_profile_action</span>(<span class="ruby-value">:modify</span>)
+  <span class="ruby-identifier">add_secure_profile_variables</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-identifier">post</span>, <span class="ruby-keyword">true</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update_recurring" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_recurring</span><span
+            class="method-args">(amount, source, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="update_recurring-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/beanstream.rb, line 131</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update_recurring</span>(<span class="ruby-identifier">amount</span>, <span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-constant">ActiveMerchant</span>.<span class="ruby-identifier">deprecated</span> <span class="ruby-constant">RECURRING_DEPRECATION_MESSAGE</span>
+
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">add_recurring_amount</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">amount</span>)
+  <span class="ruby-identifier">add_recurring_invoice</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_credit_card</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">source</span>)
+  <span class="ruby-identifier">add_address</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_recurring_operation_type</span>(<span class="ruby-identifier">post</span>, <span class="ruby-value">:update</span>)
+  <span class="ruby-identifier">add_recurring_service</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">recurring_commit</span>(<span class="ruby-identifier">post</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-verify" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">verify</span><span
+            class="method-args">(source, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="verify-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/beanstream.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">verify</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-constant">MultiResponse</span>.<span class="ruby-identifier">run</span>(<span class="ruby-value">:use_first_response</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">process</span> { <span class="ruby-identifier">authorize</span>(<span class="ruby-value">100</span>, <span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span>) }
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">process</span>(<span class="ruby-value">:ignore_result</span>) { <span class="ruby-identifier">void</span>(<span class="ruby-identifier">r</span>.<span class="ruby-identifier">authorization</span>, <span class="ruby-identifier">options</span>) }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-void" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">void</span><span
+            class="method-args">(authorization, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="void-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/beanstream.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">void</span>(<span class="ruby-identifier">authorization</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">reference</span>, <span class="ruby-identifier">amount</span>, <span class="ruby-identifier">type</span> = <span class="ruby-identifier">split_auth</span>(<span class="ruby-identifier">authorization</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">TRANSACTIONS</span>[<span class="ruby-value">:authorization</span>]
+    <span class="ruby-identifier">capture</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">authorization</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">post</span> = {}
+    <span class="ruby-identifier">add_reference</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">reference</span>)
+    <span class="ruby-identifier">add_original_amount</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">amount</span>)
+    <span class="ruby-identifier">add_transaction_type</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">void_action</span>(<span class="ruby-identifier">type</span>))
+    <span class="ruby-identifier">commit</span>(<span class="ruby-identifier">post</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

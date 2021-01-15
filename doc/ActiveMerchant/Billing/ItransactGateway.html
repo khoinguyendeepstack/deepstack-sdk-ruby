@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class ActiveMerchant::Billing::ItransactGateway - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#class-ActiveMerchant::Billing::ItransactGateway-label-How+to+get+your+GatewayID+and+API+Access+Key">How to get your GatewayID and API Access Key</a>
+    <li><a href="#class-ActiveMerchant::Billing::ItransactGateway-label-Initialization">Initialization</a>
+    <li><a href="#class-ActiveMerchant::Billing::ItransactGateway-label-Important+Notes">Important Notes</a>
+    <li><a href="#class-ActiveMerchant::Billing::ItransactGateway-label-How+to+get+your+GatewayID+and+API+Access+Key">How to get your GatewayID and API Access Key</a>
+    <li><a href="#class-ActiveMerchant::Billing::ItransactGateway-label-Initialization">Initialization</a>
+    <li><a href="#class-ActiveMerchant::Billing::ItransactGateway-label-Important+Notes">Important Notes</a>
+  </ul>
+</div>
+
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Gateway.html">ActiveMerchant::Billing::Gateway</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-authorize">#authorize</a>
+    
+    <li ><a href="#method-i-capture">#capture</a>
+    
+    <li ><a href="#method-i-purchase">#purchase</a>
+    
+    <li ><a href="#method-i-refund">#refund</a>
+    
+    <li ><a href="#method-i-void">#void</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-ActiveMerchant::Billing::ItransactGateway">
+  <h1 id="class-ActiveMerchant::Billing::ItransactGateway" class="class">
+    class ActiveMerchant::Billing::ItransactGateway
+  </h1>
+
+  <section class="description">
+    
+<p>iTransact, Inc. is an authorized reseller of the PaymentClearing gateway. If your merchant service provider uses PaymentClearing.com to process payments, you can use this module.</p>
+
+<p>Please note, the username and <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Access Key are not what you use to log into the Merchant Control Panel.</p>
+
+<h4 id="class-ActiveMerchant::Billing::ItransactGateway-label-How+to+get+your+GatewayID+and+API+Access+Key">How to get your GatewayID and <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Access Key<span><a href="#class-ActiveMerchant::Billing::ItransactGateway-label-How+to+get+your+GatewayID+and+API+Access+Key">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ol><li>
+<p>If you don&#39;t already have a <a href="Gateway.html"><code>Gateway</code></a> Account, go to <a href="http://www.itransact.com/merchant/test.html">www.itransact.com/merchant/test.html</a> to sign up.</p>
+</li><li>
+<p>Go to <a href="http://support.paymentclearing.com">support.paymentclearing.com</a> and login or register, if necessary.</p>
+</li><li>
+<p>Click on “Submit a Ticket.”</p>
+</li><li>
+<p>Select “Merchant Support” as the department and click “Next”</p>
+</li><li>
+<p>Enter <strong>both</strong> your company name and GatewayID. Put “API Access Key” in the subject.  In the body, you can request a username, but it may already be in use.</p>
+</li></ol>
+
+<h4 id="class-ActiveMerchant::Billing::ItransactGateway-label-Initialization">Initialization<span><a href="#class-ActiveMerchant::Billing::ItransactGateway-label-Initialization">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>Once you have the username, <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Access Key, and your GatewayId, you&#39;re ready to begin.  You initialize the <a href="Gateway.html"><code>Gateway</code></a> like so:</p>
+
+<pre class="ruby"><span class="ruby-identifier">gateway</span> = <span class="ruby-constant">ActiveMerchant</span><span class="ruby-operator">::</span><span class="ruby-constant">Billing</span><span class="ruby-operator">::</span><span class="ruby-constant">ItransactGateway</span>.<span class="ruby-identifier">new</span>(
+  <span class="ruby-value">:login</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-node">&quot;#{THE_USERNAME}&quot;</span>,
+  <span class="ruby-value">:password</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-node">&quot;#{THE_API_ACCESS_KEY}&quot;</span>,
+  <span class="ruby-value">:gateway_id</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-node">&quot;#{THE_GATEWAY_ID}&quot;</span>
+)
+</pre>
+
+<h4 id="class-ActiveMerchant::Billing::ItransactGateway-label-Important+Notes">Important Notes<span><a href="#class-ActiveMerchant::Billing::ItransactGateway-label-Important+Notes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ol><li>
+<p>Recurring is not implemented</p>
+</li><li>
+<p>CreditTransactions are not implemented (these are credits not related to a previously run transaction).</p>
+</li><li>
+<p>TransactionStatus is not implemented</p>
+</li></ol>
+
+<p>iTransact, Inc. is an authorized reseller of the PaymentClearing gateway. If your merchant service provider uses PaymentClearing.com to process payments, you can use this module.</p>
+
+<p>Please note, the username and <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Access Key are not what you use to log into the Merchant Control Panel.</p>
+
+<h4 id="class-ActiveMerchant::Billing::ItransactGateway-label-How+to+get+your+GatewayID+and+API+Access+Key">How to get your GatewayID and <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Access Key<span><a href="#class-ActiveMerchant::Billing::ItransactGateway-label-How+to+get+your+GatewayID+and+API+Access+Key">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ol><li>
+<p>If you don&#39;t already have a <a href="Gateway.html"><code>Gateway</code></a> Account, go to <a href="http://www.itransact.com/merchant/test.html">www.itransact.com/merchant/test.html</a> to sign up.</p>
+</li><li>
+<p>Go to <a href="http://support.paymentclearing.com">support.paymentclearing.com</a> and login or register, if necessary.</p>
+</li><li>
+<p>Click on “Submit a Ticket.”</p>
+</li><li>
+<p>Select “Merchant Support” as the department and click “Next”</p>
+</li><li>
+<p>Enter <strong>both</strong> your company name and GatewayID. Put “API Access Key” in the subject.  In the body, you can request a username, but it may already be in use.</p>
+</li></ol>
+
+<h4 id="class-ActiveMerchant::Billing::ItransactGateway-label-Initialization">Initialization<span><a href="#class-ActiveMerchant::Billing::ItransactGateway-label-Initialization">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>Once you have the username, <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Access Key, and your GatewayId, you&#39;re ready to begin.  You initialize the <a href="Gateway.html"><code>Gateway</code></a> like so:</p>
+
+<pre class="ruby"><span class="ruby-identifier">gateway</span> = <span class="ruby-constant">ActiveMerchant</span><span class="ruby-operator">::</span><span class="ruby-constant">Billing</span><span class="ruby-operator">::</span><span class="ruby-constant">ItransactGateway</span>.<span class="ruby-identifier">new</span>(
+  <span class="ruby-value">:login</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-node">&quot;#{THE_USERNAME}&quot;</span>,
+  <span class="ruby-value">:password</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-node">&quot;#{THE_API_ACCESS_KEY}&quot;</span>,
+  <span class="ruby-value">:gateway_id</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-node">&quot;#{THE_GATEWAY_ID}&quot;</span>
+)
+</pre>
+
+<h4 id="class-ActiveMerchant::Billing::ItransactGateway-label-Important+Notes">Important Notes<span><a href="#class-ActiveMerchant::Billing::ItransactGateway-label-Important+Notes">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ol><li>
+<p>Recurring is not implemented</p>
+</li><li>
+<p>CreditTransactions are not implemented (these are credits not related to a previously run transaction).</p>
+</li><li>
+<p>TransactionStatus is not implemented</p>
+</li></ol>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new instance of the iTransact <a href="Gateway.html"><code>Gateway</code></a>.</p>
+
+<h4 id="method-c-new-label-Parameters">Parameters<span><a href="#method-c-new-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>options</code> - A Hash of options</p>
+</li></ul>
+
+<h4 id="method-c-new-label-Options+Hash">Options Hash<span><a href="#method-c-new-label-Options+Hash">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:login</code> - A String containing your PaymentClearing assigned <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Access Username</p>
+</li><li>
+<p><code>:password</code> - A String containing your PaymentClearing assigned <a href="../../globallypaid_test_app/node_modules/postcss-attribute-case-insensitive/node_modules/postcss-selector-parser/API_md.html">API</a> Access Key</p>
+</li><li>
+<p><code>:gateway_id</code> - A String containing your PaymentClearing assigned GatewayID</p>
+</li><li>
+<p><code>:test_mode</code> - <code>true</code> or <code>false</code>. Run <strong>all</strong> transactions with the &#39;TestMode&#39; element set to &#39;TRUE&#39;.</p>
+</li></ul>
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="Gateway.html#method-c-new"><code>ActiveMerchant::Billing::Gateway::new</code></a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/itransact.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:login</span>, <span class="ruby-value">:password</span>, <span class="ruby-value">:gateway_id</span>)
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-authorize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">authorize</span><span
+            class="method-args">(money, payment_source, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Performs an authorize transaction.  In PaymentClearing&#39;s documentation this is known as a “PreAuth” transaction.</p>
+
+<h4 id="method-i-authorize-label-Parameters">Parameters<span><a href="#method-i-authorize-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>money</code> - The amount to be captured. Should be an Integer amount in cents.</p>
+</li><li>
+<p><code>creditcard</code> - The <a href="CreditCard.html"><code>CreditCard</code></a> details for the transaction</p>
+</li><li>
+<p><code>options</code> - A Hash of options</p>
+</li></ul>
+
+<h4 id="method-i-authorize-label-Options+Hash">Options Hash<span><a href="#method-i-authorize-label-Options+Hash">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>The standard options apply here (:order_id, :ip, :customer, :invoice, :merchant, :description, :email, :currency, :address, :billing_address, :shipping_address), as well as:</p>
+<ul><li>
+<p><code>:order_items</code> - An Array of Hash objects with the keys <code>:description</code>, <code>:cost</code> (in cents!), and <code>:quantity</code>.  If this is provided, <code>:description</code> and <code>money</code> will be ignored.</p>
+</li><li>
+<p><code>:vendor_data</code> - An Array of Hash objects with the keys being the name of the VendorData element and value being the value.</p>
+</li><li>
+<p><code>:send_customer_email</code> - <code>true</code> or <code>false</code>. Runs the transaction with the &#39;SendCustomerEmail&#39; element set to &#39;TRUE&#39; or &#39;FALSE&#39;.</p>
+</li><li>
+<p><code>:send_merchant_email</code> - <code>true</code> or <code>false</code>. Runs the transaction with the &#39;SendMerchantEmail&#39; element set to &#39;TRUE&#39; or &#39;FALSE&#39;.</p>
+</li><li>
+<p><code>:email_text</code> - An Array of (up to ten (10)) String objects to be included in emails</p>
+</li><li>
+<p><code>:test_mode</code> - <code>true</code> or <code>false</code>. Runs the transaction with the &#39;TestMode&#39; element set to &#39;TRUE&#39; or &#39;FALSE&#39;.</p>
+</li></ul>
+
+<h4 id="method-i-authorize-label-Examples">Examples<span><a href="#method-i-authorize-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<pre>response = gateway.authorize(1000, creditcard,
+  :order_id =&gt; &#39;1212&#39;, :address =&gt; {...}, :email =&gt; &#39;test@test.com&#39;,
+  :order_items =&gt; [
+    {:description =&gt; &#39;Line Item 1&#39;, :cost =&gt; &#39;8.98&#39;, :quantity =&gt; &#39;6&#39;},
+    {:description =&gt; &#39;Line Item 2&#39;, :cost =&gt; &#39;6.99&#39;, :quantity =&gt; &#39;4&#39;}
+  ],
+  :vendor_data =&gt; [{&#39;repId&#39; =&gt; &#39;1234567&#39;}, {&#39;customerId&#39; =&gt; &#39;9886&#39;}],
+  :send_customer_email =&gt; true,
+  :send_merchant_email =&gt; true,
+  :email_text =&gt; [&#39;line1&#39;, &#39;line2&#39;, &#39;line3&#39;],
+  :test_mode =&gt; true
+)</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="authorize-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/itransact.rb, line 97</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">authorize</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">payment_source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">payload</span> = <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">Builder</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">xml</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">xml</span>.<span class="ruby-constant">AuthTransaction</span> {
+      <span class="ruby-identifier">xml</span>.<span class="ruby-constant">Preauth</span>
+      <span class="ruby-identifier">add_customer_data</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">payment_source</span>, <span class="ruby-identifier">options</span>)
+      <span class="ruby-identifier">add_invoice</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">options</span>)
+      <span class="ruby-identifier">add_payment_source</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">payment_source</span>)
+      <span class="ruby-identifier">add_transaction_control</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">options</span>)
+      <span class="ruby-identifier">add_vendor_data</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">options</span>)
+    }
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">doc</span>
+
+  <span class="ruby-identifier">commit</span>(<span class="ruby-identifier">payload</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-capture" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">capture</span><span
+            class="method-args">(money, authorization, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Captures the funds from an authorize transaction.  In PaymentClearing&#39;s documentation this is known as a “PostAuth” transaction.</p>
+
+<h4 id="method-i-capture-label-Parameters">Parameters<span><a href="#method-i-capture-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>money</code> - The amount to be captured. Should be an Integer amount in cents</p>
+</li><li>
+<p><code>authorization</code> - The authorization returned from the previous capture or purchase request</p>
+</li><li>
+<p><code>options</code> - A Hash of options, all are optional.</p>
+</li></ul>
+
+<h4 id="method-i-capture-label-Options+Hash">Options Hash<span><a href="#method-i-capture-label-Options+Hash">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>The standard options apply here (:order_id, :ip, :customer, :invoice, :merchant, :description, :email, :currency, :address, :billing_address, :shipping_address), as well as:</p>
+<ul><li>
+<p><code>:vendor_data</code> - An Array of Hash objects with the keys being the name of the VendorData element and value being the value.</p>
+</li><li>
+<p><code>:send_customer_email</code> - <code>true</code> or <code>false</code>. Runs the transaction with the &#39;SendCustomerEmail&#39; element set to &#39;TRUE&#39; or &#39;FALSE&#39;.</p>
+</li><li>
+<p><code>:send_merchant_email</code> - <code>true</code> or <code>false</code>. Runs the transaction with the &#39;SendMerchantEmail&#39; element set to &#39;TRUE&#39; or &#39;FALSE&#39;.</p>
+</li><li>
+<p><code>:email_text</code> - An Array of (up to ten (10)) String objects to be included in emails</p>
+</li><li>
+<p><code>:test_mode</code> - <code>true</code> or <code>false</code>. Runs the transaction with the &#39;TestMode&#39; element set to &#39;TRUE&#39; or &#39;FALSE&#39;.</p>
+</li></ul>
+
+<h4 id="method-i-capture-label-Examples">Examples<span><a href="#method-i-capture-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<pre class="ruby"><span class="ruby-identifier">response</span> = <span class="ruby-identifier">gateway</span>.<span class="ruby-identifier">capture</span>(<span class="ruby-value">1000</span>, <span class="ruby-identifier">creditcard</span>,
+  <span class="ruby-value">:vendor_data</span> <span class="ruby-operator">=&gt;</span> [{<span class="ruby-string">&#39;repId&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;1234567&#39;</span>}, {<span class="ruby-string">&#39;customerId&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;9886&#39;</span>}],
+  <span class="ruby-value">:send_customer_email</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>,
+  <span class="ruby-value">:send_merchant_email</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>,
+  <span class="ruby-value">:email_text</span> <span class="ruby-operator">=&gt;</span> [<span class="ruby-string">&#39;line1&#39;</span>, <span class="ruby-string">&#39;line2&#39;</span>, <span class="ruby-string">&#39;line3&#39;</span>],
+  <span class="ruby-value">:test_mode</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>
+)
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="capture-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/itransact.rb, line 182</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">capture</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">authorization</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">payload</span> = <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">Builder</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">xml</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">xml</span>.<span class="ruby-constant">PostAuthTransaction</span> {
+      <span class="ruby-identifier">xml</span>.<span class="ruby-constant">OperationXID</span>(<span class="ruby-identifier">authorization</span>)
+      <span class="ruby-identifier">add_invoice</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">options</span>)
+      <span class="ruby-identifier">add_transaction_control</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">options</span>)
+      <span class="ruby-identifier">add_vendor_data</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">options</span>)
+    }
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">doc</span>
+
+  <span class="ruby-identifier">commit</span>(<span class="ruby-identifier">payload</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-purchase" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">purchase</span><span
+            class="method-args">(money, payment_source, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Performs an authorize and capture in single transaction. In PaymentClearing&#39;s documentation this is known as an “Auth” or a “Sale” transaction</p>
+
+<h4 id="method-i-purchase-label-Parameters">Parameters<span><a href="#method-i-purchase-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>money</code> - The amount to be captured. Should be <code>nil</code> or an Integer amount in cents.</p>
+</li><li>
+<p><code>creditcard</code> - The <a href="CreditCard.html"><code>CreditCard</code></a> details for the transaction</p>
+</li><li>
+<p><code>options</code> - A Hash of options</p>
+</li></ul>
+
+<h4 id="method-i-purchase-label-Options+Hash">Options Hash<span><a href="#method-i-purchase-label-Options+Hash">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>The standard options apply here (:order_id, :ip, :customer, :invoice, :merchant, :description, :email, :currency, :address, :billing_address, :shipping_address), as well as:</p>
+<ul><li>
+<p><code>:order_items</code> - An Array of Hash objects with the keys <code>:description</code>, <code>:cost</code> (in cents!), and <code>:quantity</code>.  If this is provided, <code>:description</code> and <code>money</code> will be ignored.</p>
+</li><li>
+<p><code>:vendor_data</code> - An Array of Hash objects with the keys being the name of the VendorData element and value being the value.</p>
+</li><li>
+<p><code>:send_customer_email</code> - <code>true</code> or <code>false</code>. Runs the transaction with the &#39;SendCustomerEmail&#39; element set to &#39;TRUE&#39; or &#39;FALSE&#39;.</p>
+</li><li>
+<p><code>:send_merchant_email</code> - <code>true</code> or <code>false</code>. Runs the transaction with the &#39;SendMerchantEmail&#39; element set to &#39;TRUE&#39; or &#39;FALSE&#39;.</p>
+</li><li>
+<p><code>:email_text</code> - An Array of (up to ten (10)) String objects to be included in emails</p>
+</li><li>
+<p><code>:test_mode</code> - <code>true</code> or <code>false</code>. Runs the transaction with the &#39;TestMode&#39; element set to &#39;TRUE&#39; or &#39;FALSE&#39;.</p>
+</li></ul>
+
+<h4 id="method-i-purchase-label-Examples">Examples<span><a href="#method-i-purchase-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<pre>response = gateway.purchase(1000, creditcard,
+  :order_id =&gt; &#39;1212&#39;, :address =&gt; {...}, :email =&gt; &#39;test@test.com&#39;,
+  :order_items =&gt; [
+    {:description =&gt; &#39;Line Item 1&#39;, :cost =&gt; &#39;8.98&#39;, :quantity =&gt; &#39;6&#39;},
+    {:description =&gt; &#39;Line Item 2&#39;, :cost =&gt; &#39;6.99&#39;, :quantity =&gt; &#39;4&#39;}
+  ],
+  :vendor_data =&gt; [{&#39;repId&#39; =&gt; &#39;1234567&#39;}, {&#39;customerId&#39; =&gt; &#39;9886&#39;}],
+  :send_customer_email =&gt; true,
+  :send_merchant_email =&gt; true,
+  :email_text =&gt; [&#39;line1&#39;, &#39;line2&#39;, &#39;line3&#39;],
+  :test_mode =&gt; true
+)</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="purchase-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/itransact.rb, line 143</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">purchase</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">payment_source</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">payload</span> = <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">Builder</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">xml</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">xml</span>.<span class="ruby-constant">AuthTransaction</span> {
+      <span class="ruby-identifier">add_customer_data</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">payment_source</span>, <span class="ruby-identifier">options</span>)
+      <span class="ruby-identifier">add_invoice</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">options</span>)
+      <span class="ruby-identifier">add_payment_source</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">payment_source</span>)
+      <span class="ruby-identifier">add_transaction_control</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">options</span>)
+      <span class="ruby-identifier">add_vendor_data</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">options</span>)
+    }
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">doc</span>
+
+  <span class="ruby-identifier">commit</span>(<span class="ruby-identifier">payload</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-refund" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">refund</span><span
+            class="method-args">(money, authorization, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This will reverse a previously run transaction which <strong>has</strong> settled.</p>
+
+<h4 id="method-i-refund-label-Parameters">Parameters<span><a href="#method-i-refund-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>money</code> - The amount to be credited. Should be an Integer amount in cents</p>
+</li><li>
+<p><code>authorization</code> - The authorization returned from the previous capture or purchase request</p>
+</li><li>
+<p><code>options</code> - A Hash of options, all are optional</p>
+</li></ul>
+
+<h4 id="method-i-refund-label-Options+Hash">Options Hash<span><a href="#method-i-refund-label-Options+Hash">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>The standard options (:order_id, :ip, :customer, :invoice, :merchant, :description, :email, :currency, :address, :billing_address, :shipping_address) are ignored.</p>
+<ul><li>
+<p><code>:vendor_data</code> - An Array of Hash objects with the keys being the name of the VendorData element and value being the value.</p>
+</li><li>
+<p><code>:send_customer_email</code> - <code>true</code> or <code>false</code>. Runs the transaction with the &#39;SendCustomerEmail&#39; element set to &#39;TRUE&#39; or &#39;FALSE&#39;.</p>
+</li><li>
+<p><code>:send_merchant_email</code> - <code>true</code> or <code>false</code>. Runs the transaction with the &#39;SendMerchantEmail&#39; element set to &#39;TRUE&#39; or &#39;FALSE&#39;.</p>
+</li><li>
+<p><code>:email_text</code> - An Array of (up to ten (10)) String objects to be included in emails</p>
+</li><li>
+<p><code>:test_mode</code> - <code>true</code> or <code>false</code>. Runs the transaction with the &#39;TestMode&#39; element set to &#39;TRUE&#39; or &#39;FALSE&#39;.</p>
+</li></ul>
+
+<h4 id="method-i-refund-label-Examples">Examples<span><a href="#method-i-refund-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<pre class="ruby"><span class="ruby-identifier">response</span> = <span class="ruby-identifier">gateway</span>.<span class="ruby-identifier">refund</span>(<span class="ruby-value">555</span>, <span class="ruby-string">&#39;9999999999&#39;</span>,
+  <span class="ruby-value">:vendor_data</span> <span class="ruby-operator">=&gt;</span> [{<span class="ruby-string">&#39;repId&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;1234567&#39;</span>}, {<span class="ruby-string">&#39;customerId&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;9886&#39;</span>}],
+  <span class="ruby-value">:send_customer_email</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>,
+  <span class="ruby-value">:send_merchant_email</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>,
+  <span class="ruby-value">:email_text</span> <span class="ruby-operator">=&gt;</span> [<span class="ruby-string">&#39;line1&#39;</span>, <span class="ruby-string">&#39;line2&#39;</span>, <span class="ruby-string">&#39;line3&#39;</span>],
+  <span class="ruby-value">:test_mode</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>
+)
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="refund-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/itransact.rb, line 254</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">refund</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">authorization</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">payload</span> = <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">Builder</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">xml</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">xml</span>.<span class="ruby-constant">TranCredTransaction</span> {
+      <span class="ruby-identifier">xml</span>.<span class="ruby-constant">OperationXID</span>(<span class="ruby-identifier">authorization</span>)
+      <span class="ruby-identifier">add_invoice</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">options</span>)
+      <span class="ruby-identifier">add_transaction_control</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">options</span>)
+      <span class="ruby-identifier">add_vendor_data</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">options</span>)
+    }
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">doc</span>
+
+  <span class="ruby-identifier">commit</span>(<span class="ruby-identifier">payload</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-void" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">void</span><span
+            class="method-args">(authorization, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This will reverse a previously run transaction which <strong>has</strong> <strong>not</strong> settled.</p>
+
+<h4 id="method-i-void-label-Parameters">Parameters<span><a href="#method-i-void-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>authorization</code> - The authorization returned from the previous capture or purchase request</p>
+</li><li>
+<p><code>options</code> - A Hash of options, all are optional</p>
+</li></ul>
+
+<h4 id="method-i-void-label-Options+Hash">Options Hash<span><a href="#method-i-void-label-Options+Hash">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>The standard options (:order_id, :ip, :customer, :invoice, :merchant, :description, :email, :currency, :address, :billing_address, :shipping_address) are ignored.</p>
+<ul><li>
+<p><code>:vendor_data</code> - An Array of Hash objects with the keys being the name of the VendorData element and value being the value.</p>
+</li><li>
+<p><code>:send_customer_email</code> - <code>true</code> or <code>false</code>. Runs the transaction with the &#39;SendCustomerEmail&#39; element set to &#39;TRUE&#39; or &#39;FALSE&#39;.</p>
+</li><li>
+<p><code>:send_merchant_email</code> - <code>true</code> or <code>false</code>. Runs the transaction with the &#39;SendMerchantEmail&#39; element set to &#39;TRUE&#39; or &#39;FALSE&#39;.</p>
+</li><li>
+<p><code>:email_text</code> - An Array of (up to ten (10)) String objects to be included in emails</p>
+</li><li>
+<p><code>:test_mode</code> - <code>true</code> or <code>false</code>. Runs the transaction with the &#39;TestMode&#39; element set to &#39;TRUE&#39; or &#39;FALSE&#39;.</p>
+</li></ul>
+
+<h4 id="method-i-void-label-Examples">Examples<span><a href="#method-i-void-label-Examples">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<pre class="ruby"><span class="ruby-identifier">response</span> = <span class="ruby-identifier">gateway</span>.<span class="ruby-identifier">void</span>(<span class="ruby-string">&#39;9999999999&#39;</span>,
+  <span class="ruby-value">:vendor_data</span> <span class="ruby-operator">=&gt;</span> [{<span class="ruby-string">&#39;repId&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;1234567&#39;</span>}, {<span class="ruby-string">&#39;customerId&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;9886&#39;</span>}],
+  <span class="ruby-value">:send_customer_email</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>,
+  <span class="ruby-value">:send_merchant_email</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>,
+  <span class="ruby-value">:email_text</span> <span class="ruby-operator">=&gt;</span> [<span class="ruby-string">&#39;line1&#39;</span>, <span class="ruby-string">&#39;line2&#39;</span>, <span class="ruby-string">&#39;line3&#39;</span>],
+  <span class="ruby-value">:test_mode</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>
+)
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="void-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/itransact.rb, line 218</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">void</span>(<span class="ruby-identifier">authorization</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">payload</span> = <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">Builder</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">xml</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">xml</span>.<span class="ruby-constant">VoidTransaction</span> {
+      <span class="ruby-identifier">xml</span>.<span class="ruby-constant">OperationXID</span>(<span class="ruby-identifier">authorization</span>)
+      <span class="ruby-identifier">add_transaction_control</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">options</span>)
+      <span class="ruby-identifier">add_vendor_data</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">options</span>)
+    }
+  <span class="ruby-keyword">end</span>.<span class="ruby-identifier">doc</span>
+
+  <span class="ruby-identifier">commit</span>(<span class="ruby-identifier">payload</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

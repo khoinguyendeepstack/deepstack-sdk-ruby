@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class ActiveMerchant::Billing::NetpayGateway - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Gateway.html">ActiveMerchant::Billing::Gateway</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-authorize">#authorize</a>
+    
+    <li ><a href="#method-i-capture">#capture</a>
+    
+    <li ><a href="#method-i-purchase">#purchase</a>
+    
+    <li ><a href="#method-i-refund">#refund</a>
+    
+    <li ><a href="#method-i-void">#void</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-ActiveMerchant::Billing::NetpayGateway">
+  <h1 id="class-ActiveMerchant::Billing::NetpayGateway" class="class">
+    class ActiveMerchant::Billing::NetpayGateway
+  </h1>
+
+  <section class="description">
+    
+<p>NETPAY <a href="Gateway.html"><code>Gateway</code></a></p>
+
+<p>Support for NETPAY&#39;s HTTP Connector payment gateway in Mexico.</p>
+
+<p>The gateway sends requests as HTTP POST and receives the response details in the HTTP header, making the process really rather simple.</p>
+
+<p>Support for calls to the authorize and capture methods have been included as per the Netpay manuals, however, your millage may vary with these methods. At the time of writing (January 2013) they were not fully supported by the production or test gateways. This situation is expected to change within a few weeks/months.</p>
+
+<p>Purchases can be cancelled (`#void`) only within 24 hours of the transaction. After this, a refund should be performed instead.</p>
+
+<p>In addition to the regular <a href="../../ActiveMerchant.html"><code>ActiveMerchant</code></a> transaction options, NETPAY also supports a `:mode` parameter. This allows testing to be performed in production and force specific results.</p>
+
+<pre>* &#39;P&#39; - Production
+* &#39;A&#39; - Approved
+* &#39;D&#39; - Declined
+* &#39;R&#39; - Random (Approved or Declined)
+* &#39;T&#39; - Test</pre>
+
+<p>For example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">response</span> = <span class="ruby-ivar">@gateway</span>.<span class="ruby-identifier">purchase</span>(<span class="ruby-value">1000</span>, <span class="ruby-identifier">card</span>, <span class="ruby-value">:mode</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;D&#39;</span>)
+<span class="ruby-identifier">response</span>.<span class="ruby-identifier">success</span>  <span class="ruby-comment"># false</span>
+</pre>
+
+<p>NETPAY <a href="Gateway.html"><code>Gateway</code></a></p>
+
+<p>Support for NETPAY&#39;s HTTP Connector payment gateway in Mexico.</p>
+
+<p>The gateway sends requests as HTTP POST and receives the response details in the HTTP header, making the process really rather simple.</p>
+
+<p>Support for calls to the authorize and capture methods have been included as per the Netpay manuals, however, your millage may vary with these methods. At the time of writing (January 2013) they were not fully supported by the production or test gateways. This situation is expected to change within a few weeks/months.</p>
+
+<p>Purchases can be cancelled (`#void`) only within 24 hours of the transaction. After this, a refund should be performed instead.</p>
+
+<p>In addition to the regular <a href="../../ActiveMerchant.html"><code>ActiveMerchant</code></a> transaction options, NETPAY also supports a `:mode` parameter. This allows testing to be performed in production and force specific results.</p>
+
+<pre>* &#39;P&#39; - Production
+* &#39;A&#39; - Approved
+* &#39;D&#39; - Declined
+* &#39;R&#39; - Random (Approved or Declined)
+* &#39;T&#39; - Test</pre>
+
+<p>For example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">response</span> = <span class="ruby-ivar">@gateway</span>.<span class="ruby-identifier">purchase</span>(<span class="ruby-value">1000</span>, <span class="ruby-identifier">card</span>, <span class="ruby-value">:mode</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;D&#39;</span>)
+<span class="ruby-identifier">response</span>.<span class="ruby-identifier">success</span>  <span class="ruby-comment"># false</span>
+</pre>
+
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="CURRENCY_CODES">CURRENCY_CODES
+        
+        <dd>
+        
+      
+        <dt id="RESPONSE_KEYS">RESPONSE_KEYS
+        
+        <dd><p>The header keys that we will provide in the response params hash</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="Gateway.html#method-c-new"><code>ActiveMerchant::Billing::Gateway::new</code></a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/netpay.rb, line 60</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:store_id</span>, <span class="ruby-value">:login</span>, <span class="ruby-value">:password</span>)
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-authorize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">authorize</span><span
+            class="method-args">(money, creditcard, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Send an authorization request</p>
+          
+          
+
+          
+          <div class="method-source-code" id="authorize-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/netpay.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">authorize</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">creditcard</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">add_invoice</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_creditcard</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">creditcard</span>)
+  <span class="ruby-identifier">add_customer_data</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_amount</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">options</span>)
+
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;PreAuth&#39;</span>, <span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-capture" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">capture</span><span
+            class="method-args">(money, authorization, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Capture an authorization</p>
+          
+          
+
+          
+          <div class="method-source-code" id="capture-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/netpay.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">capture</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">authorization</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">add_order_id</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">order_id_from</span>(<span class="ruby-identifier">authorization</span>))
+  <span class="ruby-identifier">add_amount</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">options</span>)
+
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;PostAuth&#39;</span>, <span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-purchase" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">purchase</span><span
+            class="method-args">(money, creditcard, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Make a purchase.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="purchase-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/netpay.rb, line 97</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">purchase</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">creditcard</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">add_invoice</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_creditcard</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">creditcard</span>)
+  <span class="ruby-identifier">add_customer_data</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_amount</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">options</span>)
+
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;Auth&#39;</span>, <span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-refund" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">refund</span><span
+            class="method-args">(money, authorization, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Perform a Credit transaction.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="refund-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/netpay.rb, line 108</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">refund</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">authorization</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">add_order_id</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">order_id_from</span>(<span class="ruby-identifier">authorization</span>))
+  <span class="ruby-identifier">add_amount</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">options</span>)
+
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;Credit&#39;</span>, <span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-void" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">void</span><span
+            class="method-args">(authorization, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Cancel an auth/purchase within first 24 hours</p>
+          
+          
+
+          
+          <div class="method-source-code" id="void-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/netpay.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">void</span>(<span class="ruby-identifier">authorization</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">order_id</span>, <span class="ruby-identifier">amount</span>, <span class="ruby-identifier">currency</span> = <span class="ruby-identifier">split_authorization</span>(<span class="ruby-identifier">authorization</span>)
+  <span class="ruby-identifier">add_order_id</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">order_id</span>)
+  <span class="ruby-identifier">post</span>[<span class="ruby-string">&#39;Total&#39;</span>] = (<span class="ruby-identifier">options</span>[<span class="ruby-value">:amount</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">amount</span>)
+  <span class="ruby-identifier">post</span>[<span class="ruby-string">&#39;CurrencyCode&#39;</span>] = <span class="ruby-identifier">currency</span>
+
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;Refund&#39;</span>, <span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

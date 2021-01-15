@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class ActiveMerchant::Billing::DLocalGateway - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Gateway.html">ActiveMerchant::Billing::Gateway</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-authorize">#authorize</a>
+    
+    <li ><a href="#method-i-capture">#capture</a>
+    
+    <li ><a href="#method-i-purchase">#purchase</a>
+    
+    <li ><a href="#method-i-refund">#refund</a>
+    
+    <li ><a href="#method-i-scrub">#scrub</a>
+    
+    <li ><a href="#method-i-supports_scrubbing-3F">#supports_scrubbing?</a>
+    
+    <li ><a href="#method-i-verify">#verify</a>
+    
+    <li ><a href="#method-i-void">#void</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-ActiveMerchant::Billing::DLocalGateway">
+  <h1 id="class-ActiveMerchant::Billing::DLocalGateway" class="class">
+    class ActiveMerchant::Billing::DLocalGateway
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="Gateway.html#method-c-new"><code>ActiveMerchant::Billing::Gateway::new</code></a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/d_local.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:login</span>, <span class="ruby-value">:trans_key</span>, <span class="ruby-value">:secret_key</span>)
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-authorize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">authorize</span><span
+            class="method-args">(money, payment, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="authorize-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/d_local.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">authorize</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">payment</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">add_auth_purchase_params</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">payment</span>, <span class="ruby-string">&#39;authorize&#39;</span>, <span class="ruby-identifier">options</span>)
+
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;authorize&#39;</span>, <span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-capture" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">capture</span><span
+            class="method-args">(money, authorization, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="capture-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/d_local.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">capture</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">authorization</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:authorization_id</span>] = <span class="ruby-identifier">authorization</span>
+  <span class="ruby-identifier">add_invoice</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">options</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">money</span>
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;capture&#39;</span>, <span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-purchase" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">purchase</span><span
+            class="method-args">(money, payment, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="purchase-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/d_local.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">purchase</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">payment</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">add_auth_purchase_params</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">payment</span>, <span class="ruby-string">&#39;purchase&#39;</span>, <span class="ruby-identifier">options</span>)
+
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;purchase&#39;</span>, <span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-refund" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">refund</span><span
+            class="method-args">(money, authorization, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="refund-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/d_local.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">refund</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">authorization</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:payment_id</span>] = <span class="ruby-identifier">authorization</span>
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:notification_url</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value">:notification_url</span>]
+  <span class="ruby-identifier">add_invoice</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">options</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">money</span>
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;refund&#39;</span>, <span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-scrub" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">scrub</span><span
+            class="method-args">(transcript)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="scrub-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/d_local.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">scrub</span>(<span class="ruby-identifier">transcript</span>)
+  <span class="ruby-identifier">transcript</span>.
+    <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r((X-Trans-Key: )\w+)</span>, <span class="ruby-string">&#39;\1[FILTERED]&#39;</span>).
+    <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r((\&quot;number\\\&quot;:\\\&quot;)\d+)</span>, <span class="ruby-string">&#39;\1[FILTERED]&#39;</span>).
+    <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r((\&quot;cvv\\\&quot;:\\\&quot;)\d+)</span>, <span class="ruby-string">&#39;\1[FILTERED]&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-supports_scrubbing-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">supports_scrubbing?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="supports_scrubbing-3F-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/d_local.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">supports_scrubbing?</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-verify" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">verify</span><span
+            class="method-args">(credit_card, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="verify-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/d_local.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">verify</span>(<span class="ruby-identifier">credit_card</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-constant">MultiResponse</span>.<span class="ruby-identifier">run</span>(<span class="ruby-value">:use_first_response</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">process</span> { <span class="ruby-identifier">authorize</span>(<span class="ruby-value">100</span>, <span class="ruby-identifier">credit_card</span>, <span class="ruby-identifier">options</span>) }
+    <span class="ruby-identifier">r</span>.<span class="ruby-identifier">process</span>(<span class="ruby-value">:ignore_result</span>) { <span class="ruby-identifier">void</span>(<span class="ruby-identifier">r</span>.<span class="ruby-identifier">authorization</span>, <span class="ruby-identifier">options</span>) }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-void" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">void</span><span
+            class="method-args">(authorization, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="void-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/d_local.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">void</span>(<span class="ruby-identifier">authorization</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:authorization_id</span>] = <span class="ruby-identifier">authorization</span>
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;void&#39;</span>, <span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

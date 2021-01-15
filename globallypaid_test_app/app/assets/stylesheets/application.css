@@ -20,6 +20,19 @@
      height: 100vw;
  }
 
+ .main {
+     float: left;
+ }
+
 .logo img {
     width: 150px;
+}
+
+
+.wrapper {
+    background-color: white;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 10px;
+    filter: drop-shadow(10px 5px 10px #777);
 }

@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class ActiveMerchant::Billing::BluePayGateway - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Gateway.html">ActiveMerchant::Billing::Gateway</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-authorize">#authorize</a>
+    
+    <li ><a href="#method-i-cancel_recurring">#cancel_recurring</a>
+    
+    <li ><a href="#method-i-capture">#capture</a>
+    
+    <li ><a href="#method-i-credit">#credit</a>
+    
+    <li ><a href="#method-i-purchase">#purchase</a>
+    
+    <li ><a href="#method-i-recurring">#recurring</a>
+    
+    <li ><a href="#method-i-refund">#refund</a>
+    
+    <li ><a href="#method-i-scrub">#scrub</a>
+    
+    <li ><a href="#method-i-status_recurring">#status_recurring</a>
+    
+    <li ><a href="#method-i-supports_scrubbing">#supports_scrubbing</a>
+    
+    <li ><a href="#method-i-update_recurring">#update_recurring</a>
+    
+    <li ><a href="#method-i-void">#void</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-ActiveMerchant::Billing::BluePayGateway">
+  <h1 id="class-ActiveMerchant::Billing::BluePayGateway" class="class">
+    class ActiveMerchant::Billing::BluePayGateway
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="AVS_ERRORS">AVS_ERRORS
+        
+        <dd>
+        
+      
+        <dt id="AVS_REASON_CODES">AVS_REASON_CODES
+        
+        <dd>
+        
+      
+        <dt id="CARD_CODE_ERRORS">CARD_CODE_ERRORS
+        
+        <dd>
+        
+      
+        <dt id="CHECK_ACCOUNT_TYPES">CHECK_ACCOUNT_TYPES
+        
+        <dd>
+        
+      
+        <dt id="FIELD_MAP">FIELD_MAP
+        
+        <dd>
+        
+      
+        <dt id="REBILL_FIELD_MAP">REBILL_FIELD_MAP
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new BluepayGateway</p>
+
+<p>The gateway requires that a valid Account ID and Secret Key be passed in the <code>options</code> hash.</p>
+
+<h4 id="method-c-new-label-Options">Options<span><a href="#method-c-new-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:account_id</code> – The BluePay gateway Account ID (REQUIRED)</p>
+</li><li>
+<p><code>:secret_key</code> – The BluePay gateway Secret Key (REQUIRED)</p>
+</li><li>
+<p><code>:test</code> – set to true for TEST mode or false for LIVE mode</p>
+</li></ul>
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="Gateway.html#method-c-new"><code>ActiveMerchant::Billing::Gateway::new</code></a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/blue_pay.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:login</span>, <span class="ruby-value">:password</span>)
+  <span class="ruby-keyword">super</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-authorize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">authorize</span><span
+            class="method-args">(money, payment_object, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Performs an authorization, which reserves the funds on the customer&#39;s credit card. This does not actually take funds from the customer This is referred to an AUTH transaction in BluePay</p>
+
+<h4 id="method-i-authorize-label-Parameters">Parameters<span><a href="#method-i-authorize-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>money</code> – The amount to be authorized as an Integer value in cents.</p>
+</li><li>
+<p><code>payment_object</code> – This can either be one of three things: A <a href="CreditCard.html"><code>CreditCard</code></a> object, A <a href="Check.html"><code>Check</code></a> object, or a token. The token is called the Master ID. This is a unique transaction ID returned from a previous transaction. This token associates all the stored information for a previous transaction.</p>
+</li><li>
+<p><code>options</code> – A hash of optional parameters.</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="authorize-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/blue_pay.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">authorize</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">payment_object</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">add_payment_method</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">payment_object</span>)
+  <span class="ruby-identifier">add_invoice</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_address</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_customer_data</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_rebill</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:rebill</span>]
+  <span class="ruby-identifier">add_duplicate_override</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:TRANS_TYPE</span>] = <span class="ruby-string">&#39;AUTH&#39;</span>
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;AUTH_ONLY&#39;</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-cancel_recurring" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cancel_recurring</span><span
+            class="method-args">(rebill_id)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Cancel a recurring payment.</p>
+
+<p>This transaction cancels an existing recurring billing.</p>
+
+<h4 id="method-i-cancel_recurring-label-Parameters">Parameters<span><a href="#method-i-cancel_recurring-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>rebill_id</code> – A string containing the rebill_id of the recurring billing that you wish to cancel/stop (REQUIRED)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="cancel_recurring-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/blue_pay.rb, line 293</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">cancel_recurring</span>(<span class="ruby-identifier">rebill_id</span>)
+  <span class="ruby-constant">ActiveMerchant</span>.<span class="ruby-identifier">deprecated</span> <span class="ruby-constant">RECURRING_DEPRECATION_MESSAGE</span>
+
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">rebill_id</span>)
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:REBILL_ID</span>]         = <span class="ruby-identifier">rebill_id</span>
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:TRANS_TYPE</span>]        = <span class="ruby-string">&#39;SET&#39;</span>
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:STATUS</span>]            = <span class="ruby-string">&#39;stopped&#39;</span>
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;rebill&#39;</span>, <span class="ruby-string">&#39;nil&#39;</span>, <span class="ruby-identifier">post</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-capture" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">capture</span><span
+            class="method-args">(money, identification, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Captures the funds from an authorize transaction. This is referred to a CAPTURE transaction in BluePay</p>
+
+<h4 id="method-i-capture-label-Parameters">Parameters<span><a href="#method-i-capture-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>money</code> – The amount to be captured as an Integer value in cents.</p>
+</li><li>
+<p><code>identification</code> – The Master ID, or token, returned from the previous authorize transaction.</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="capture-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/blue_pay.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">capture</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">identification</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">add_address</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_customer_data</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:MASTER_ID</span>] = <span class="ruby-identifier">identification</span>
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:TRANS_TYPE</span>] = <span class="ruby-string">&#39;CAPTURE&#39;</span>
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;PRIOR_AUTH_CAPTURE&#39;</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-credit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">credit</span><span
+            class="method-args">(money, payment_object, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="credit-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/blue_pay.rb, line 177</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">credit</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">payment_object</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">payment_object</span>&amp;.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">String</span>)
+    <span class="ruby-constant">ActiveMerchant</span>.<span class="ruby-identifier">deprecated</span> <span class="ruby-string">&#39;credit should only be used to credit a payment method&#39;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">refund</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">payment_object</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:PAYMENT_ACCOUNT</span>] = <span class="ruby-string">&#39;&#39;</span>
+  <span class="ruby-identifier">add_payment_method</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">payment_object</span>)
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:TRANS_TYPE</span>] = <span class="ruby-string">&#39;CREDIT&#39;</span>
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:DOC_TYPE</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value">:doc_type</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:doc_type</span>]
+
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:NAME1</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value">:first_name</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&#39;&#39;</span>
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:NAME2</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value">:last_name</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:last_name</span>]
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:ZIP</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value">:zip</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:zip</span>]
+  <span class="ruby-identifier">add_invoice</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_address</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_customer_data</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;CREDIT&#39;</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-purchase" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">purchase</span><span
+            class="method-args">(money, payment_object, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Perform a purchase, which is essentially an authorization and capture in a single operation. This is referred to a SALE transaction in BluePay</p>
+
+<h4 id="method-i-purchase-label-Parameters">Parameters<span><a href="#method-i-purchase-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>money</code> – The amount to be purchased as an Integer value in cents.</p>
+</li><li>
+<p><code>payment_object</code> – This can either be one of three things: A <a href="CreditCard.html"><code>CreditCard</code></a> object, A <a href="Check.html"><code>Check</code></a> object, or a token. The token is called the Master ID. This is a unique transaction ID returned from a previous transaction. This token associates all the stored information for a previous transaction.</p>
+</li><li>
+<p><code>options</code> – A hash of optional parameters.,</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="purchase-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/blue_pay.rb, line 102</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">purchase</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">payment_object</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">add_payment_method</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">payment_object</span>)
+  <span class="ruby-identifier">add_invoice</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_address</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_customer_data</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_rebill</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:rebill</span>]
+  <span class="ruby-identifier">add_duplicate_override</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:TRANS_TYPE</span>] = <span class="ruby-string">&#39;SALE&#39;</span>
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;AUTH_CAPTURE&#39;</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-recurring" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">recurring</span><span
+            class="method-args">(money, payment_object, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <h4 id="method-i-recurring-label-Options">Options<span><a href="#method-i-recurring-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:rebill_start_date</code> is a string that tells the gateway when to start the rebill. (REQUIRED) Has two valid formats: “YYYY-MM-DD HH:MM:SS” Hours, minutes, and seconds are optional. “XX UNITS” Relative date as explained below. Marked from the time of the transaction (i.e.: 10 DAYS, 1 MONTH, 1 YEAR)</p>
+</li><li>
+<p><code>:rebill_expression</code> is the period of time in-between rebillings. (REQUIRED) It uses the same “XX UNITS” format as rebill_start_date, explained above. Optional parameters include:</p>
+</li><li>
+<p><code>rebill_cycles</code>: Number of times to rebill. Don&#39;t send or set to nil for infinite rebillings (or until canceled).</p>
+</li><li>
+<p><code>rebill_amount</code>:   Amount to rebill. Defaults to amount of transaction for rebillings.</p>
+
+<p>For example, to charge the customer $19.95 now and then charge $39.95 in 60 days every 3 months for 5 times, the options hash would be as follows: :rebill_start_date =&gt; &#39;60 DAYS&#39;, :rebill_expression =&gt; &#39;3 MONTHS&#39;, :rebill_cycles     =&gt; &#39;5&#39;, :rebill_amount     =&gt; &#39;39.95&#39; A money object of 1995 cents would be passed into the &#39;money&#39; parameter.</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="recurring-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/blue_pay.rb, line 229</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">recurring</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">payment_object</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-constant">ActiveMerchant</span>.<span class="ruby-identifier">deprecated</span> <span class="ruby-constant">RECURRING_DEPRECATION_MESSAGE</span>
+
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:rebill_start_date</span>, <span class="ruby-value">:rebill_expression</span>)
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:rebill</span>] = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">money</span>
+    <span class="ruby-identifier">purchase</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">payment_object</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">authorize</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">payment_object</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-refund" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">refund</span><span
+            class="method-args">(money, identification, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Performs a credit.</p>
+
+<p>This transaction indicates that money should flow from the merchant to the customer.</p>
+
+<h4 id="method-i-refund-label-Parameters">Parameters<span><a href="#method-i-refund-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>money</code> – The amount to be credited to the customer as an Integer value in cents.</p>
+</li><li>
+<p><code>payment_object</code> – This can either be one of three things: A <a href="CreditCard.html"><code>CreditCard</code></a> object, A <a href="Check.html"><code>Check</code></a> object, or a token. The token is called the Master ID. This is a unique transaction ID returned from a previous transaction. This token associates all the stored information for a previous transaction. If the payment_object is a token, then the transaction type will reverse a previous capture or purchase transaction, returning the funds to the customer. If the amount is nil, a full credit will be processed. This is referred to a REFUND transaction in BluePay. If the payment_object is either a <a href="CreditCard.html"><code>CreditCard</code></a> or <a href="Check.html"><code>Check</code></a> object, then the transaction type will be an unmatched credit placing funds in the specified account. This is referred to a CREDIT transaction in BluePay.</p>
+</li><li>
+<p><code>options</code> – A hash of parameters.</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="refund-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/blue_pay.rb, line 157</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">refund</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">identification</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">identification</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">identification</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">String</span>)
+    <span class="ruby-constant">ActiveMerchant</span>.<span class="ruby-identifier">deprecated</span> <span class="ruby-string">&#39;refund should only be used to refund a referenced transaction&#39;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">credit</span>(<span class="ruby-identifier">money</span>, <span class="ruby-identifier">identification</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:PAYMENT_ACCOUNT</span>] = <span class="ruby-string">&#39;&#39;</span>
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:MASTER_ID</span>]  = <span class="ruby-identifier">identification</span>
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:TRANS_TYPE</span>] = <span class="ruby-string">&#39;REFUND&#39;</span>
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:DOC_TYPE</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value">:doc_type</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:doc_type</span>]
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:NAME1</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value">:first_name</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&#39;&#39;</span>
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:NAME2</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value">:last_name</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:last_name</span>]
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:ZIP</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value">:zip</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:zip</span>]
+  <span class="ruby-identifier">add_invoice</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_address</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">add_customer_data</span>(<span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;CREDIT&#39;</span>, <span class="ruby-identifier">money</span>, <span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-scrub" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">scrub</span><span
+            class="method-args">(transcript)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="scrub-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/blue_pay.rb, line 308</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">scrub</span>(<span class="ruby-identifier">transcript</span>)
+  <span class="ruby-identifier">transcript</span>.
+    <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r((Authorization: Basic )\w+)</span>, <span class="ruby-string">&#39;\1[FILTERED]&#39;</span>).
+    <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r((&amp;?card_num=)[^&amp;]*)i</span>, <span class="ruby-string">&#39;\1[FILTERED]&#39;</span>).
+    <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r((&amp;?CARD_CVV2=)[^&amp;]*)i</span>, <span class="ruby-string">&#39;\1[FILTERED]&#39;</span>).
+    <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r((&amp;?PAYMENT_ACCOUNT=)[^&amp;]*)i</span>, <span class="ruby-string">&#39;\1[FILTERED]&#39;</span>).
+    <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r((&amp;?TAMPER_PROOF_SEAL=)[^&amp;&quot;]*)i</span>, <span class="ruby-string">&#39;\1[FILTERED]&#39;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-status_recurring" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">status_recurring</span><span
+            class="method-args">(rebill_id)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>View a recurring payment</p>
+
+<p>This will pull data associated with a current recurring billing</p>
+
+<h4 id="method-i-status_recurring-label-Parameters">Parameters<span><a href="#method-i-status_recurring-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>rebill_id</code> – A string containing the rebill_id of the recurring billing that is already active (REQUIRED)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="status_recurring-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/blue_pay.rb, line 248</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">status_recurring</span>(<span class="ruby-identifier">rebill_id</span>)
+  <span class="ruby-constant">ActiveMerchant</span>.<span class="ruby-identifier">deprecated</span> <span class="ruby-constant">RECURRING_DEPRECATION_MESSAGE</span>
+
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">rebill_id</span>)
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:REBILL_ID</span>] = <span class="ruby-identifier">rebill_id</span>
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:TRANS_TYPE</span>] = <span class="ruby-string">&#39;GET&#39;</span>
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;rebill&#39;</span>, <span class="ruby-string">&#39;nil&#39;</span>, <span class="ruby-identifier">post</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-supports_scrubbing" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">supports_scrubbing</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="supports_scrubbing-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/blue_pay.rb, line 304</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">supports_scrubbing</span>
+  <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-update_recurring" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_recurring</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Update a recurring payment&#39;s details.</p>
+
+<p>This transaction updates an existing recurring billing</p>
+
+<h4 id="method-i-update_recurring-label-Options">Options<span><a href="#method-i-update_recurring-label-Options">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>:rebill_id</code> – The 12 digit rebill ID used to update a particular rebilling cycle. (REQUIRED)</p>
+</li><li>
+<p><code>:rebill_amount</code> – A string containing the new rebilling amount.</p>
+</li><li>
+<p><code>:rebill_next_date</code> – A string containing the new rebilling next date.</p>
+</li><li>
+<p><code>:rebill_expression</code> – A string containing the new rebilling expression.</p>
+</li><li>
+<p><code>:rebill_cycles</code> – A string containing the new rebilling cycles.</p>
+</li><li>
+<p><code>:rebill_next_amount</code> – A string containing the next rebilling amount to charge the customer. This ONLY affects the next scheduled charge; all other rebillings will continue at the regular (rebill_amount) amount. Take a look above at the recurring_payment method for similar examples on how to use.</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="update_recurring-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/blue_pay.rb, line 271</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update_recurring</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-constant">ActiveMerchant</span>.<span class="ruby-identifier">deprecated</span> <span class="ruby-constant">RECURRING_DEPRECATION_MESSAGE</span>
+
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">requires!</span>(<span class="ruby-identifier">options</span>, <span class="ruby-value">:rebill_id</span>)
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:REBILL_ID</span>]          = <span class="ruby-identifier">options</span>[<span class="ruby-value">:rebill_id</span>]
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:TRANS_TYPE</span>]         = <span class="ruby-string">&#39;SET&#39;</span>
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:REB_AMOUNT</span>]         = <span class="ruby-identifier">amount</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:rebill_amount</span>]) <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:rebill_amount</span>]
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:NEXT_DATE</span>]          = <span class="ruby-identifier">options</span>[<span class="ruby-value">:rebill_next_date</span>]
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:REB_EXPR</span>]           = <span class="ruby-identifier">options</span>[<span class="ruby-value">:rebill_expression</span>]
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:REB_CYCLES</span>]         = <span class="ruby-identifier">options</span>[<span class="ruby-value">:rebill_cycles</span>]
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:NEXT_AMOUNT</span>]        = <span class="ruby-identifier">options</span>[<span class="ruby-value">:rebill_next_amount</span>]
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;rebill&#39;</span>, <span class="ruby-string">&#39;nil&#39;</span>, <span class="ruby-identifier">post</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-void" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">void</span><span
+            class="method-args">(identification, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Void a previous transaction This is referred to a VOID transaction in BluePay</p>
+
+<h4 id="method-i-void-label-Parameters">Parameters<span><a href="#method-i-void-label-Parameters">&para;</a> <a href="#top">&uarr;</a></span></h4>
+<ul><li>
+<p><code>identification</code> - The Master ID, or token, returned from a previous authorize transaction.</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="void-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/gateways/blue_pay.rb, line 136</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">void</span>(<span class="ruby-identifier">identification</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">post</span> = {}
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:MASTER_ID</span>] = <span class="ruby-identifier">identification</span>
+  <span class="ruby-identifier">post</span>[<span class="ruby-value">:TRANS_TYPE</span>] = <span class="ruby-string">&#39;VOID&#39;</span>
+  <span class="ruby-identifier">commit</span>(<span class="ruby-string">&#39;VOID&#39;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">post</span>, <span class="ruby-identifier">options</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

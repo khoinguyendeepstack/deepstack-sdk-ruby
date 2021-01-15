@@ -64,8 +64,6 @@ class RemoteGloballyPaidTest < Test::Unit::TestCase
     assert_success payment_instruments
   end  
 
-
-
   # def test_failed_authorize
   #   response = @gateway.authorize(@amount, @declined_card, @options)
   #   assert_failure response
@@ -145,11 +143,11 @@ class RemoteGloballyPaidTest < Test::Unit::TestCase
 
   def billing_contact
     billing_contact = {}
-    billing_contact[:first_name] = "Test"
-    billing_contact[:last_name] = "Tester"
+    billing_contact[:first_name] = "Peco"
+    billing_contact[:last_name] = "Danajlovski"
     billing_contact[:address] = address
-    billing_contact[:phone] = "614-340-0823"
-    billing_contact[:email] = "test@test.com"
+    billing_contact[:phone] = "070261666"
+    billing_contact[:email] = "peco.danajlovski@gmail.com"
     billing_contact
   end
 
@@ -160,5 +158,7 @@ class RemoteGloballyPaidTest < Test::Unit::TestCase
     creditcard[:cvv] = "361"
     creditcard
   end
+
+  
 
 end

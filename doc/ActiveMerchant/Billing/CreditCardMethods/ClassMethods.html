@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module ActiveMerchant::Billing::CreditCardMethods::ClassMethods - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../";
+  var index_rel_prefix = "../../../";
+</script>
+
+<script src="../../../js/navigation.js" defer></script>
+<script src="../../../js/search.js" defer></script>
+<script src="../../../js/search_index.js" defer></script>
+<script src="../../../js/searcher.js" defer></script>
+<script src="../../../js/darkfish.js" defer></script>
+
+<link href="../../../css/fonts.css" rel="stylesheet">
+<link href="../../../css/rdoc.css" rel="stylesheet">
+
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../../table_of_contents.html#pages">Pages</a>
+    <a href="../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-brand-3F">#brand?</a>
+    
+    <li ><a href="#method-i-card_companies">#card_companies</a>
+    
+    <li ><a href="#method-i-electron-3F">#electron?</a>
+    
+    <li ><a href="#method-i-first_digits">#first_digits</a>
+    
+    <li ><a href="#method-i-last_digits">#last_digits</a>
+    
+    <li ><a href="#method-i-mask">#mask</a>
+    
+    <li ><a href="#method-i-matching_brand-3F">#matching_brand?</a>
+    
+    <li ><a href="#method-i-matching_type-3F">#matching_type?</a>
+    
+    <li ><a href="#method-i-type-3F">#type?</a>
+    
+    <li ><a href="#method-i-valid_number-3F">#valid_number?</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-ActiveMerchant::Billing::CreditCardMethods::ClassMethods">
+  <h1 id="module-ActiveMerchant::Billing::CreditCardMethods::ClassMethods" class="module">
+    module ActiveMerchant::Billing::CreditCardMethods::ClassMethods
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="EVEN_LUHN_VALUE">EVEN_LUHN_VALUE
+        
+        <dd>
+        
+      
+        <dt id="ODD_LUHN_VALUE">ODD_LUHN_VALUE
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-brand-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">brand?</span><span
+            class="method-args">(number)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a string containing the brand of card from the list of known information below.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="brand-3F-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/credit_card_methods.rb, line 229</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">brand?</span>(<span class="ruby-identifier">number</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;bogus&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">valid_test_mode_card_number?</span>(<span class="ruby-identifier">number</span>)
+
+  <span class="ruby-constant">CARD_COMPANY_DETECTORS</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">company</span>, <span class="ruby-identifier">func</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">company</span>.<span class="ruby-identifier">dup</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">func</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">number</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-card_companies" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">card_companies</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="card_companies-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/credit_card_methods.rb, line 224</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">card_companies</span>
+  <span class="ruby-constant">CARD_COMPANY_DETECTORS</span>.<span class="ruby-identifier">keys</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-electron-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">electron?</span><span
+            class="method-args">(number)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="electron-3F-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/credit_card_methods.rb, line 239</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">electron?</span>(<span class="ruby-identifier">number</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> [<span class="ruby-value">16</span>, <span class="ruby-value">19</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">number</span>&amp;.<span class="ruby-identifier">length</span>)
+
+  <span class="ruby-comment"># don&#39;t recalculate for each range</span>
+  <span class="ruby-identifier">bank_identification_number</span> = <span class="ruby-identifier">first_digits</span>(<span class="ruby-identifier">number</span>).<span class="ruby-identifier">to_i</span>
+
+  <span class="ruby-constant">ELECTRON_RANGES</span>.<span class="ruby-identifier">any?</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">range</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">range</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">bank_identification_number</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-first_digits" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">first_digits</span><span
+            class="method-args">(number)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="first_digits-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/credit_card_methods.rb, line 255</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">first_digits</span>(<span class="ruby-identifier">number</span>)
+  <span class="ruby-identifier">number</span>&amp;.<span class="ruby-identifier">slice</span>(<span class="ruby-value">0</span>, <span class="ruby-value">6</span>) <span class="ruby-operator">||</span> <span class="ruby-string">&#39;&#39;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-last_digits" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">last_digits</span><span
+            class="method-args">(number)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="last_digits-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/credit_card_methods.rb, line 259</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">last_digits</span>(<span class="ruby-identifier">number</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-string">&#39;&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">number</span>.<span class="ruby-identifier">nil?</span>
+
+  <span class="ruby-identifier">number</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">4</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">number</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">number</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">-4</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-mask" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mask</span><span
+            class="method-args">(number)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="mask-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/credit_card_methods.rb, line 265</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mask</span>(<span class="ruby-identifier">number</span>)
+  <span class="ruby-node">&quot;XXXX-XXXX-XXXX-#{last_digits(number)}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-matching_brand-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">matching_brand?</span><span
+            class="method-args">(number, brand)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Checks to see if the calculated brand matches the specified brand</p>
+          
+          
+
+          
+          <div class="method-source-code" id="matching_brand-3F-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/credit_card_methods.rb, line 270</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">matching_brand?</span>(<span class="ruby-identifier">number</span>, <span class="ruby-identifier">brand</span>)
+  <span class="ruby-identifier">brand?</span>(<span class="ruby-identifier">number</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">brand</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-matching_type-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">matching_type?</span><span
+            class="method-args">(number, brand)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="matching_type-3F-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/credit_card_methods.rb, line 274</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">matching_type?</span>(<span class="ruby-identifier">number</span>, <span class="ruby-identifier">brand</span>)
+  <span class="ruby-constant">ActiveMerchant</span>.<span class="ruby-identifier">deprecated</span> <span class="ruby-string">&#39;CreditCard#matching_type? is deprecated and will be removed from a future release of ActiveMerchant. Please use CreditCard#matching_brand? instead.&#39;</span>
+  <span class="ruby-identifier">matching_brand?</span>(<span class="ruby-identifier">number</span>, <span class="ruby-identifier">brand</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-type-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">type?</span><span
+            class="method-args">(number)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="type-3F-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/credit_card_methods.rb, line 250</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">type?</span>(<span class="ruby-identifier">number</span>)
+  <span class="ruby-constant">ActiveMerchant</span>.<span class="ruby-identifier">deprecated</span> <span class="ruby-string">&#39;CreditCard#type? is deprecated and will be removed from a future release of ActiveMerchant. Please use CreditCard#brand? instead.&#39;</span>
+  <span class="ruby-identifier">brand?</span>(<span class="ruby-identifier">number</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-valid_number-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">valid_number?</span><span
+            class="method-args">(number)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns true if it validates. Optionally, you can pass a card brand as an argument and make sure it is of the correct brand.</p>
+
+<p>References:</p>
+<ul><li>
+<p><a href="http://perl.about.com/compute/perl/library/nosearch/P073000.htm">perl.about.com/compute/perl/library/nosearch/P073000.htm</a></p>
+</li><li>
+<p><a href="http://www.beachnet.com/~hstiles/cardtype.html">www.beachnet.com/~hstiles/cardtype.html</a></p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="valid_number-3F-source">
+            <pre><span class="ruby-comment"># File active_merchant/lib/active_merchant/billing/credit_card_methods.rb, line 217</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">valid_number?</span>(<span class="ruby-identifier">number</span>)
+  <span class="ruby-identifier">valid_test_mode_card_number?</span>(<span class="ruby-identifier">number</span>) <span class="ruby-operator">||</span>
+    <span class="ruby-identifier">valid_card_number_length?</span>(<span class="ruby-identifier">number</span>) <span class="ruby-operator">&amp;&amp;</span>
+      <span class="ruby-identifier">valid_card_number_characters?</span>(<span class="ruby-identifier">number</span>) <span class="ruby-operator">&amp;&amp;</span>
+      <span class="ruby-identifier">valid_by_algorithm?</span>(<span class="ruby-identifier">brand?</span>(<span class="ruby-identifier">number</span>), <span class="ruby-identifier">number</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
