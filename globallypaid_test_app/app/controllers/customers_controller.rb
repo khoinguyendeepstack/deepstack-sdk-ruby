@@ -27,31 +27,21 @@ class CustomersController < ApplicationController
 
   # POST /customers
   # POST /customers.json
-  def create
-    @customer = Customer.new(customer_params)
+  def create    
+    @gateway.create_customer(customer_params.to_h)
 
     respond_to do |format|
-      if @customer.save
-        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
-        format.json { render :show, status: :created, location: @customer }
-      else
-        format.html { render :new }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to customers_url, notice: 'Customer was successfully created.' }
     end
   end
 
   # PATCH/PUT /customers/1
   # PATCH/PUT /customers/1.json
   def update
+    @gateway.create_customer(customer_params.to_h)
+
     respond_to do |format|
-      if @customer.update(customer_params)
-        format.html { redirect_to @customer, notice: 'Customer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @customer }
-      else
-        format.html { render :edit }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to customers_url, notice: 'Customer was successfully created.' }
     end
   end
 

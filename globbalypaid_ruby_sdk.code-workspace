@@ -13,6 +13,10 @@
 	"settings": {
 		"ruby.codeCompletion": "rcodetools",
 		"ruby.format": "rubocop",
-		"ruby.intellisense": "rubyLocate"
+		"ruby.intellisense": "rubyLocate",
+		"ruby.interpreter.commandPath": "/home/vortex/.rvm/rubies/ruby-2.7.2/bin/ruby",
+		"ruby.rubocop.executePath": "/home/vortex/.rvm/gems/ruby-2.7.2/bin/",
+		"ruby.rubocop.useBundler": true,
+		"ruby.linter.executablePath": "/home/vortex/.rvm/rubies/ruby-2.7.2/bin/ruby"
 	}
 }

@@ -37,17 +37,17 @@ module ActiveMerchant #:nodoc:
       #   payment - credit card or other instrument
       #   options - customer data
       def charge(money, payment, options={})
-        puts "Charge (options):" + options.inspect
         post = {}
         add_invoice(post, money, options)
         add_payment(post, payment)
         add_customer_data(post, options)
         add_address(post, payment, options)
-        if !options["id"]
-          add_token(post)
-        else
-          post[:source] = options["id"]
-        end        
+        # if !options["id"]
+        #   add_token(post)
+        # else
+        #   post[:source] = options["id"]
+        # end     
+        add_token(post)
         puts "Post (charge): #{post}"
 
         commit('sale', post)
@@ -119,6 +119,7 @@ module ActiveMerchant #:nodoc:
       #   customer - customer object
       #   TODO: Maybe put the schema
       def create_customer(customer)
+        puts "Customer: " + customer.inspect
         commit('create_customer', customer)
       end
 
@@ -141,7 +142,13 @@ module ActiveMerchant #:nodoc:
       #
       #   customer_id - the id of the customer
       def delete_customer(customer_id)
-        commit('delete_customer', customer_id)
+        response = ssl_request(:post, "https://qa.api.globallypaid.com/api/v1/customer", customer_id, headers)
+
+        Response.new(
+          response,
+          authorization: authorization_from(response),
+          test: test?,
+        )              
       end
 
       # List payment instruments      
@@ -156,7 +163,6 @@ module ActiveMerchant #:nodoc:
           test: test?,
         )                
       end      
-
 
       # Create payment instrument for a customer
       #
@@ -259,7 +265,7 @@ module ActiveMerchant #:nodoc:
 
         post[:payment_instrument] = payment_instrument
         post[:capture] = true
-        post[:rescurring] = false
+        post[:recurring] = false
         post[:avs] = false
         post[:user_agent] = nil
         post[:browser_header] = nil
@@ -285,9 +291,9 @@ module ActiveMerchant #:nodoc:
 
       def commit(action, parameters)
         begin
-          response = parse(ssl_post(url(action), post_data(action, parameters), headers.merge(add_hmac_header(parameters))))
-
-          puts "Response: " + response.inspect
+          hmac_header = add_hmac_header(parameters)
+          puts "HMAC: " + hmac_header.inspect
+          response = parse(ssl_post(url(action), post_data(action, parameters), headers.merge(hmac_header)))
 
           Response.new(
             success_from(response),
@@ -300,7 +306,7 @@ module ActiveMerchant #:nodoc:
             error_code: error_code_from(response)
           )
         rescue ResponseError => e
-          puts "Rescued: #{e.response.code}"
+          puts "Caught error: #{e.response.message} | Headers: #{headers}"
           Response.new(
             e.response.code.to_i,
             e.response.message,
@@ -356,12 +362,17 @@ module ActiveMerchant #:nodoc:
 
       def add_token(post)
         # Fetch the token 
-        token_url = 'https://qa.api.globallypaid.com/api/v1/token'
-        response = ssl_post(token_url, JSON.generate(post), headers)
-        parsed = JSON.parse(response)
-        post[:source] = parsed["id"]
+        begin
+          token_url = 'https://qa.api.globallypaid.com/api/v1/token'
+          response = ssl_post(token_url, JSON.generate(post), headers)
+          parsed = JSON.parse(response)
+          post[:source] = parsed["id"]
+        rescue ResponseError => e 
+          puts "Post: " + post.inspect
+          puts "Headers: " + headers.inspect
+          puts e.response.message
+        end
       end
-
 
       def error_code_from(response)
         unless success_from(response)

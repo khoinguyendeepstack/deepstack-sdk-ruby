@@ -1,3 +1,5 @@
+ActiveMerchant::Billing::Base.mode = :test
+
 @credentials = {
     :publishable_api_key => 'pk_test_pr9IokgZOcNd0YGLuW3unrvYvLoIkCCk', 
     :app_id => 'sk_test_3a164632-7951-4688-9d49-c9c5', 
@@ -29,28 +31,26 @@ def address(options = {})
 end
   
 def billing_contact
-billing_contact = {}
-billing_contact[:first_name] = "Peco"
-billing_contact[:last_name] = "Danajlovski"
-billing_contact[:address] = address
-billing_contact[:phone] = "070261666"
-billing_contact[:email] = "peco.danajlovski@gmail.com"
-billing_contact
+    billing_contact = {}
+    billing_contact[:first_name] = "Jim"
+    billing_contact[:last_name] = "Smith"
+    billing_contact[:address] = address
+    billing_contact[:phone] = "070261666"
+    billing_contact[:email] = "jim.smith@gmail.com"
+    billing_contact
 end
   
-def customer_data
-    customer_data = {
-        billing_contact: billing_contact,
-        # address: address,
-        description: 'Store Purchase',
-        client_customer_id: "1474687",
-        client_transaction_id: "154896575",
-        client_transaction_description: "ChargeWithToken for TesterXXX3",
-        client_invoice_id: "758496",
-        currency_code: "USD"
-    }
-    customer_data
-end
+
+@customer_data = {
+    billing_contact: billing_contact,
+    # address: address,
+    description: 'Store Purchase',
+    client_customer_id: "1474687",
+    client_transaction_id: "154896575",
+    client_transaction_description: "ChargeWithToken for TesterXXX3",
+    client_invoice_id: "758496",
+    currency_code: "USD"
+}
 
   # credit_card = ActiveMerchant::Billing::CreditCard.new(
 #     :first_name         => 'Bob',

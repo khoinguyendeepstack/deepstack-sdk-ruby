@@ -50,13 +50,28 @@ class RemoteGloballyPaidTest < Test::Unit::TestCase
 
   def test_successful_create_customer
     customer_data = {
-      'client_customer_id' => '1474692',
+      'client_customer_id' => '1474698',
       'first_name' => 'Peco',
       'last_name' => 'Danajlovski'
     }
 
     new_customer = @gateway.create_customer(customer_data)
+
+    assert_success new_customer
   end
+
+  def test_successful_delete_customer
+    customer_data = {
+      'client_customer_id' => '1474777',
+      'first_name' => 'Peco',
+      'last_name' => 'Danajlovski'
+    }
+
+    new_customer = @gateway.create_customer(customer_data)
+    puts "New Customer": + new_customer.inspect
+    response = @gateway.delete_customer(new_customer.params["id"])
+    assert_success response
+  end  
 
   def test_successful_list_payment_instruments
     payment_instruments = @gateway.list_payment_instruments(@customer_id)
@@ -158,7 +173,5 @@ class RemoteGloballyPaidTest < Test::Unit::TestCase
     creditcard[:cvv] = "361"
     creditcard
   end
-
-  
 
 end

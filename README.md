@@ -77,7 +77,7 @@ if credit_card.validate.empty?
 end
 ```
 
-### Refund request 
+### Refund request
 
 ```ruby
 response = gateway.refund(amount)
@@ -89,7 +89,7 @@ There are two types of unit tests for each gateway.  The first are the normal un
 
 The second type are the remote unit tests.  These use real test accounts, if available, and communicate with the test servers of the payments gateway.  These are critical to having confidence in the implementation of the gateway.  If the gateway doesn't have a global public test account then you should remove your private test account credentials from the file before submitting your patch.
 
-To run tests: 
+To run tests:
 
 ```bash
 $ bundle install

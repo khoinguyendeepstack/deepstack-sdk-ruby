@@ -18,6 +18,23 @@
      width: 15%;
      float: left;
      height: 100vw;
+     margin: 0;
+ }
+ 
+ .sidebar li {
+     list-style: none;
+ }
+
+ .sidebar a {
+     text-decoration: none;
+     color: midnightblue;
+     font-size: 1.2em; 
+     line-height: 1.6em;   
+ }
+
+ .sidebar a:hover {
+     color: rgb(98, 98, 165);
+     background-color: transparent;
  }
 
  .main {
