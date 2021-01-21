@@ -52,6 +52,11 @@ or from a github repository:
 gem 'active-merchant-globally-paid-gateway', :github => 'user/repo'
 ```
 
+## Example
+
+For a working example of usage, please visit [Globally Paid Ruby SDK example|https://github.com/globallypaid/globallypaid-sdk-ruby-samples].
+
+
 # Documentation
 
 ## Initialize the Client
