@@ -1,4 +1,5 @@
 require 'json'
+require 'awesome_print'
 
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
@@ -41,14 +42,12 @@ module ActiveMerchant #:nodoc:
         add_invoice(post, money, options)
         add_payment(post, payment)
         add_customer_data(post, options)
-        add_address(post, payment, options)
-        # if !options["id"]
-        #   add_token(post)
-        # else
-        #   post[:source] = options["id"]
-        # end     
+        if !options["id"]
+          add_token(post)
+        else
+          post[:source] = options["id"]
+        end     
         add_token(post)
-        puts "Post (charge): #{post}"
 
         commit('sale', post)
       end
@@ -63,7 +62,6 @@ module ActiveMerchant #:nodoc:
         add_invoice(post, money, options)
         save_payment(post, payment)
         add_customer_data(post, options)        
-        add_address(post, payment, options)
         add_token(post)
 
         commit('authonly', post)
@@ -117,9 +115,7 @@ module ActiveMerchant #:nodoc:
       # Create customer
       #
       #   customer - customer object
-      #   TODO: Maybe put the schema
       def create_customer(customer)
-        puts "Customer: " + customer.inspect
         commit('create_customer', customer)
       end
 
@@ -213,6 +209,7 @@ module ActiveMerchant #:nodoc:
 
       def init_post(options = {})
         post = {}
+        post
       end
 
       def add_charge(post, authorization)
@@ -238,15 +235,6 @@ module ActiveMerchant #:nodoc:
 
       def add_customer_data(post, options)        
         post[:payment_instrument][:billing_contact] = options[:billing_contact]
-      end
-
-      def add_address(post, creditcard, options)
-        # puts "Options: #{options}"
-        # puts "Post (add_address): #{post}"
-        # billing_contact = options[:billing_contact]
-        # # billing_contact[:address] = options[:address]
-        # post[:payment_instrument][:billing_contact] = billing_contact
-        # # post[:payment_instrument][:billing_contact][:address] = options[:billing_address]
       end
 
       def add_invoice(post, money, options)
@@ -292,8 +280,9 @@ module ActiveMerchant #:nodoc:
       def commit(action, parameters)
         begin
           hmac_header = add_hmac_header(parameters)
-          puts "HMAC: " + hmac_header.inspect
           response = parse(ssl_post(url(action), post_data(action, parameters), headers.merge(hmac_header)))
+          puts "Sending..."
+          ap parameters
 
           Response.new(
             success_from(response),
@@ -368,9 +357,11 @@ module ActiveMerchant #:nodoc:
           parsed = JSON.parse(response)
           post[:source] = parsed["id"]
         rescue ResponseError => e 
-          puts "Post: " + post.inspect
-          puts "Headers: " + headers.inspect
-          puts e.response.message
+          puts "Post: "
+          ap post
+          puts "Headers: "
+          ap headers
+          ap e.response.message
         end
       end
 
