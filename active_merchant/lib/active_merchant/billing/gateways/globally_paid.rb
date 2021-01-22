@@ -164,7 +164,6 @@ module ActiveMerchant #:nodoc:
       #
       #   paymentinstrment - payment instrument object
       #   customer_id - the id of the payment instrument's customer
-      #   TODO: Maybe put the schema
       def create_paymentinstrument(paymentinstrument)
         commit('create_paymentinstrument', options)
       end
@@ -295,7 +294,10 @@ module ActiveMerchant #:nodoc:
             error_code: error_code_from(response)
           )
         rescue ResponseError => e
-          puts "Caught error: #{e.response.message} | Headers: #{headers}"
+          puts "Caught error: "
+          ap e.response.message
+          puts "Headers:" 
+          ap headers
           Response.new(
             e.response.code.to_i,
             e.response.message,
@@ -367,7 +369,7 @@ module ActiveMerchant #:nodoc:
 
       def error_code_from(response)
         unless success_from(response)
-          # TODO: lookup error code for this response
+          response.code.to_i
         end
       end
     end
