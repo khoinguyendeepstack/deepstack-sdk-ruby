@@ -138,7 +138,7 @@ module ActiveMerchant #:nodoc:
       #
       #   customer_id - the id of the customer
       def delete_customer(customer_id)
-        response = ssl_request(:post, "https://qa.api.globallypaid.com/api/v1/customer", customer_id, headers)
+        response = ssl_request(:delete, "https://qa.api.globallypaid.com/api/v1/customer", customer_id, headers)
 
         Response.new(
           response,
@@ -165,13 +165,13 @@ module ActiveMerchant #:nodoc:
       #   paymentinstrment - payment instrument object
       #   customer_id - the id of the payment instrument's customer
       def create_paymentinstrument(paymentinstrument)
-        commit('create_paymentinstrument', options)
+        commit('create_paymentinstrument', paymentinstrument)
       end
 
       # Get the payment instrument
       #   paymentinstrument_id - the id of the payment instrument
       def get_paymentinstrument(paymentinstrument_id)
-        commit('get_customer', customer_id)
+        commit('get_paymentinstrument', paymentinstrument_id)
       end
 
       # Update payment instrument
@@ -330,6 +330,8 @@ module ActiveMerchant #:nodoc:
           uri + "/customer"
         when "list_payment_instruments"
           uri + "/paymentinstrument/list"
+        when "create_paymentinstrument"
+          uri + "/paymentinstrument"
         else
           uri + "/noaction"
         end
