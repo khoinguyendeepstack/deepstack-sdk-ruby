@@ -1,13 +1,13 @@
 {
 	"folders": [
 		{
-			"path": "globallypaid_test_app"
-		},
-		{
 			"path": "active_merchant"
 		},
 		{
 			"path": "."
+		},
+		{
+			"path": "../globallypaid-sdk-ruby-samples"
 		}
 	],
 	"settings": {

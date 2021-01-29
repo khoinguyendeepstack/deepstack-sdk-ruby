@@ -185,8 +185,14 @@ module ActiveMerchant #:nodoc:
       # Delete payment instrument
       #
       #   paymentinstrument_id - the id of the payment instrument
-      def delete_paymentinstrument(paymentinstrument_id)
-        commit('delete_paymentinstrument', paymentinstrument_id)
+      def delete_paymentinstrument(paymentinstrument_id) 
+        response = ssl_request(:delete, "https://qa.api.globallypaid.com/api/v1/paymentinstrument/#{paymentinstrument_id}", nil, headers)
+
+        Response.new(
+          response,
+          authorization: authorization_from(response),
+          test: test?,
+        )                
       end      
 
       # def verify(credit_card, options={})
