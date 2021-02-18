@@ -4,8 +4,9 @@ require 'awesome_print'
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     class GloballyPaidGateway < Gateway
+      # self.test_url = 'https://localhost:44328/api'      
       self.test_url = 'https://qa.api.globallypaid.com/api'
-      self.live_url = 'https://transactions.globallypaid.com/api'
+      self.live_url = 'https://api.globallypaid.com/api'
 
       self.supported_countries = ['US']
       self.default_currency = 'USD'
@@ -26,28 +27,26 @@ module ActiveMerchant #:nodoc:
       #           :publishable_api_key  - Publishable API key
       #           :app_id               - Application ID
       #           :shared_secret        - Shared secret
+      #           :sandbox              - use sanbox url? (true or false)
       def initialize(options={})
         requires!(options, :publishable_api_key, :app_id, :shared_secret, :sandbox)
-        @publishable_api_key, @app_id, @shared_secret = options.values_at(:publishable_api_key, :app_id, :shared_secret)
+        @publishable_api_key, @app_id, @shared_secret, @sandbox = options.values_at(:publishable_api_key, :app_id, :shared_secret, :sandbox)
         super
       end
 
       # Charges specific amount of money
       #
       #   money - amount of money in cents
-      #   payment - credit card or other instrument
+      #   payment - paymnent_instrument_id or CC structure
       #   options - customer data
-      def charge(money, payment, options={})
+      def purchase(money, payment, options={})
         post = {}
-        add_invoice(post, money, options)
+        add_invoice(post, options)
+        add_payment_data(post, options)
         add_payment(post, payment)
-        add_customer_data(post, options)
-        if !options["id"]
-          add_token(post)
-        else
-          post[:source] = options["id"]
-        end     
-        add_token(post)
+        add_amount(post, money)
+
+        post[:capture] = true
 
         commit('sale', post)
       end
@@ -55,27 +54,29 @@ module ActiveMerchant #:nodoc:
       # Authorizes and prepares the transaction for capturing
       #
       #   money - amount of money in cents
-      #   payment - credit card or other instrument
+      #   source - paymnent_instrument_id
       #   options - customer data      
       def authorize(money, payment, options={})
         post = {}
-        add_invoice(post, money, options)
-        save_payment(post, payment)
-        add_customer_data(post, options)        
-        add_token(post)
+        add_invoice(post, options)
+        add_payment_data(post, options)
+        add_payment(post, payment)
+        add_amount(post, money)
 
-        commit('authonly', post)
+        post[:capture] = false
+
+        commit('authorization', post)
       end
 
       # Capture authorized transaction
       #
       #   money - amount of money in cents
-      #   authorization - authorized transaction
+      #   authorization - authorized transaction id
       #   options - customer data        
       def capture(money, authorization, options={})
-        post = init_post(options)
-        add_invoice(post, money, options)
+        post = {}
         add_charge(post, authorization)
+        add_amount(post, money)
 
         commit('capture', post)
       end
@@ -83,32 +84,36 @@ module ActiveMerchant #:nodoc:
       # Refund authorized transaction
       #
       #   money - amount of money in cents
-      #   authorization - authorized transaction
+      #   authorization - authorized transaction id
       #   options - customer data        
       def refund(money, authorization, options={})
-        post = init_post(options)
-        add_invoice(post, money, options)
-        add_charge(post, authorization)        
+        post = {}
+        add_charge(post, authorization)
+        add_amount(post, money)
+        
+        post[:reason] = options[:reason]
+
         commit('refund', post)
       end
 
       # Void authorized transaction
       #
       #   money - amount of money in cents
-      #   authorization - authorized transaction
-      #   options - customer data             
-      def void(authorization, options={})
-        commit('void', post)
+      #   authorization - authorized transaction id
+      #   options - customer data        
+      def void(money, authorization, options={})
+        ret = refund(money, authorization, options)
+        ret
       end
 
       # List customers
       def list_customers()
-        response = ssl_get('https://qa.api.globallypaid.com/api/v1/customer', headers)
+        # response = ssl_get('https://qa.api.globallypaid.com/api/v1/customer', headers)
+        response = ssl_get(get_url("list_customers"), headers)
 
         Response.new(
           response,
-          authorization: authorization_from(response),
-          test: test?,
+          authorization: authorization_from(response)
         )        
       end
 
@@ -116,14 +121,17 @@ module ActiveMerchant #:nodoc:
       #
       #   customer - customer object
       def create_customer(customer)
-        commit('create_customer', customer)
+        commit("customer", customer)
       end
 
       # Get the customer 
       #
       #   customer_id - the id of the customer
       def get_customer(customer_id)
-        commit('get_customer', customer_id)
+        ap get_url("customer") + '/' + customer_id
+
+        response = ssl_get(get_url("customer") + "/" + customer_id, headers)
+        # commit('customer', customer_id)
       end
 
       # Update customer
@@ -131,19 +139,21 @@ module ActiveMerchant #:nodoc:
       #   customer_id - the id of the customer
       #   options - upated data
       def update_customer(customer_id, options={})
-        commit('update_customer', options)
+        commit('customer', options)
       end
 
       # Delete customer
       #
       #   customer_id - the id of the customer
-      def delete_customer(customer_id)
-        response = ssl_request(:delete, "https://qa.api.globallypaid.com/api/v1/customer", customer_id, headers)
+      def delete_customer(customer_id) 
+        hmac_header = add_hmac_header_delete(customer_id)
+        merged_headers = headers.merge(hmac_header)
+
+        response = ssl_request(:delete, get_url("customer") + "/" + customer_id, "", merged_headers)
 
         Response.new(
           response,
           authorization: authorization_from(response),
-          test: test?,
         )              
       end
 
@@ -151,12 +161,12 @@ module ActiveMerchant #:nodoc:
       #
       #   customer_id - the id of the customer for whom we fetch the payment instruments
       def list_payment_instruments(customer_id)
-        response = ssl_get("https://qa.api.globallypaid.com/api/v1/paymentinstrument/list/#{customer_id}", headers)
+        # response = ssl_get("https://qa.api.globallypaid.com/api/v1/paymentinstrument/list/#{customer_id}", headers)
+        response = ssl_get(get_url("list_payment_instruments") + "/" + customer_id, headers)
 
         Response.new(
           response,
           authorization: authorization_from(response),
-          test: test?,
         )                
       end      
 
@@ -165,13 +175,13 @@ module ActiveMerchant #:nodoc:
       #   paymentinstrment - payment instrument object
       #   customer_id - the id of the payment instrument's customer
       def create_paymentinstrument(paymentinstrument)
-        commit('create_paymentinstrument', paymentinstrument)
+        commit('paymentinstrument', paymentinstrument)
       end
 
       # Get the payment instrument
       #   paymentinstrument_id - the id of the payment instrument
       def get_paymentinstrument(paymentinstrument_id)
-        commit('get_paymentinstrument', paymentinstrument_id)
+        commit('paymentinstrument', paymentinstrument_id)
       end
 
       # Update payment instrument
@@ -179,28 +189,23 @@ module ActiveMerchant #:nodoc:
       #   paymentinstrument_id - the id of the payment instrument
       #   options - upated data      
       def update_paymentinstrument(paymentinstrument_id, options={})
-        commit('update_paymentinstrument', options)
+        commit('paymentinstrument', options)
       end
 
       # Delete payment instrument
       #
       #   paymentinstrument_id - the id of the payment instrument
       def delete_paymentinstrument(paymentinstrument_id) 
-        response = ssl_request(:delete, "https://qa.api.globallypaid.com/api/v1/paymentinstrument/#{paymentinstrument_id}", nil, headers)
+        hmac_header = add_hmac_header_delete(paymentinstrument_id)
+        merged_headers = headers.merge(hmac_header)
+
+        response = ssl_request(:delete, get_url("paymentinstrument") + "/" + paymentinstrument_id, "", merged_headers)
 
         Response.new(
           response,
           authorization: authorization_from(response),
-          test: test?,
         )                
       end      
-
-      # def verify(credit_card, options={})
-      #   MultiResponse.run(:use_first_response) do |r|
-      #     r.process { authorize(100, credit_card, options) }
-      #     r.process(:ignore_result) { void(r.authorization, options) }
-      #   end
-      # end
 
       def supports_scrubbing?
         true
@@ -209,8 +214,6 @@ module ActiveMerchant #:nodoc:
       def scrub(transcript)
         transcript
       end
-
-      private
 
       def init_post(options = {})
         post = {}
@@ -230,6 +233,15 @@ module ActiveMerchant #:nodoc:
         {'hmac' => hmac_encoded}
       end
 
+      def add_hmac_header_delete(post)
+        uuid = SecureRandom.uuid
+        secret_decoded = Base64.strict_decode64(@shared_secret)
+        hash_in_base64 = Base64.strict_encode64(OpenSSL::HMAC.digest('SHA256', secret_decoded, ""))
+        hmac_string = "#{@app_id}:POST:#{uuid.to_s}:#{hash_in_base64}"
+        hmac_encoded = Base64.strict_encode64(hmac_string)
+        {'hmac' => hmac_encoded}
+      end
+
       def headers
         {
           'Authorization' => "Bearer #{@publishable_api_key}",
@@ -242,13 +254,13 @@ module ActiveMerchant #:nodoc:
         post[:payment_instrument][:billing_contact] = options[:billing_contact]
       end
 
-      def add_invoice(post, money, options)
-        post[:amount] = amount(money)
+      def add_invoice(post, options)
         post[:client_customer_id] = options[:client_customer_id]
         post[:client_transaction_id] = options[:client_transaction_id]
         post[:client_transaction_description] = options[:client_transaction_description]
         post[:client_invoice_id] = options[:client_invoice_id]
         post[:currency_code] = options[:currency_code]
+        post[:country_code] = options[:country_code]
       end
 
       def add_payment(post, payment)
@@ -257,12 +269,6 @@ module ActiveMerchant #:nodoc:
         payment_instrument[:creditcard] = payment
 
         post[:payment_instrument] = payment_instrument
-        post[:capture] = true
-        post[:recurring] = false
-        post[:avs] = false
-        post[:user_agent] = nil
-        post[:browser_header] = nil
-        post[:save_payment_instrument] = true
       end
 
       def save_payment(post, payment)
@@ -278,6 +284,26 @@ module ActiveMerchant #:nodoc:
         post[:save_payment_instrument] = false   
       end
 
+      def add_payment_data(post, options)
+        post[:cof_type] = options[:cof_type]
+        post[:avs] = options[:avs]
+        post[:cvv] = options[:cvv]
+        post[:user_agent] = options[:user_agent]
+        post[:browser_header] = options[:browser_header]
+        post[:save_payment_instrument] = options[:save_payment_instrument]
+        post[:session_id] = options[:session_id]
+        post[:shipping_info] = options[:shipping_info]
+        post[:fees] = options[:fees]
+      end
+
+      def add_payment(post, payment)
+        post[:source] = payment
+      end
+
+      def add_amount(post, amount)
+        post[:amount] = amount(amount)
+      end
+
       def parse(body)
         JSON.parse(body)
       end
@@ -285,7 +311,8 @@ module ActiveMerchant #:nodoc:
       def commit(action, parameters)
         begin
           hmac_header = add_hmac_header(parameters)
-          response = parse(ssl_post(url(action), post_data(action, parameters), headers.merge(hmac_header)))
+          merged_headers = headers.merge(hmac_header)
+          response = parse(ssl_post(get_url(action), post_data(action, parameters), merged_headers))
           puts "Sending..."
           ap parameters
 
@@ -303,26 +330,31 @@ module ActiveMerchant #:nodoc:
           puts "Caught error: "
           ap e.response.message
           puts "Headers:" 
-          ap headers
+          ap merged_headers
           Response.new(
             e.response.code.to_i,
-            e.response.message,
+            e.response.body,
             {}
           )
         end
       end
 
-      def url(action, authorization = nil)
+      def get_url(action)
         uri_action = uri(action)
-        test? ? "#{test_url}#{uri_action}" : "#{live_url}#{uri_action}"
-      end      
+
+        if (@sandbox) 
+          "#{test_url}#{uri_action}"
+        else 
+          "#{live_url}#{uri_action}"
+        end
+      end  
 
       def uri(action)
         uri = "/v1"
         case action
         when "sale"
           uri + "/charge"
-        when "authonly"
+        when "authorization"
           uri + "/charge"
         when "capture"
           uri + "/capture"
@@ -332,12 +364,14 @@ module ActiveMerchant #:nodoc:
           uri + "/refund"
         when "list_customers"
           uri + "/customer"
-        when "create_customer"
-          uri + "/customer"
+        when "customer"
+          uri + "/customer"       
         when "list_payment_instruments"
           uri + "/paymentinstrument/list"
-        when "create_paymentinstrument"
+        when "paymentinstrument"
           uri + "/paymentinstrument"
+        when "token"
+          uri + "/token"
         else
           uri + "/noaction"
         end
@@ -359,27 +393,12 @@ module ActiveMerchant #:nodoc:
         JSON.generate(parameters)
       end
 
-      def add_token(post)
-        # Fetch the token 
-        begin
-          token_url = 'https://qa.api.globallypaid.com/api/v1/token'
-          response = ssl_post(token_url, JSON.generate(post), headers)
-          parsed = JSON.parse(response)
-          post[:source] = parsed["id"]
-        rescue ResponseError => e 
-          puts "Post: "
-          ap post
-          puts "Headers: "
-          ap headers
-          ap e.response.message
-        end
-      end
-
       def error_code_from(response)
         unless success_from(response)
           response.code.to_i
         end
       end
+
     end
   end
 end
