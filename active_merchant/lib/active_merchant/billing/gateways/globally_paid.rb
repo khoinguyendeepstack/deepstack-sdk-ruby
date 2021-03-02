@@ -138,7 +138,7 @@ module ActiveMerchant #:nodoc:
       #   customer_id - the id of the customer
       #   options - upated data
       def update_customer(customer_id, options={})
-        commit('customer', options)
+        commit_put('customer', options, customer_id)
       end
 
       # Delete customer
@@ -188,7 +188,7 @@ module ActiveMerchant #:nodoc:
       #   paymentinstrument_id - the id of the payment instrument
       #   options - upated data      
       def update_paymentinstrument(paymentinstrument_id, options={})
-        commit('paymentinstrument', options)
+        commit_put('paymentinstrument', options, paymentinstrument_id)
       end
 
       # Delete payment instrument
@@ -338,6 +338,45 @@ module ActiveMerchant #:nodoc:
             {}
           )
         end
+      end
+
+      def commit_put(action, parameters, id)
+        begin
+          hmac_header = add_hmac_header(parameters)
+          merged_headers = headers.merge(hmac_header)
+          response = parse(ssl_put(get_url(action) + "/" + id, post_data(action, parameters), merged_headers))
+          puts "Sending..."
+          ap parameters
+
+          Response.new(
+            success_from(response),
+            message_from(response),
+            response,
+            authorization: authorization_from(response),
+            avs_result: AVSResult.new(code: response["cvv_result"]),
+            cvv_result: CVVResult.new(response["avs_result"]),
+            test: test?,
+            error_code: error_code_from(response)
+          )
+        rescue ResponseError => e
+          puts "Caught error: "
+          ap e.response.message
+          puts "Headers:" 
+          ap merged_headers
+          puts "Body:"
+          ap e.response.body
+          Response.new(
+            e.response.code.to_i,
+            e.response.body,
+            {}
+          )
+        end
+      end
+
+      def ssl_put(endpoint, data, headers = {})
+        ap "endpoint:"
+        ap endpoint
+        ssl_request(:put, endpoint, data, headers)
       end
 
       def get_url(action)
