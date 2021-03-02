@@ -4,8 +4,7 @@ require 'awesome_print'
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     class GloballyPaidGateway < Gateway
-      # self.test_url = 'https://localhost:44328/api'      
-      self.test_url = 'https://qa.api.globallypaid.com/api'
+      self.test_url = 'https://sandbox.api.globallypaid.com/api'
       self.live_url = 'https://api.globallypaid.com/api'
 
       self.supported_countries = ['US']
@@ -331,6 +330,8 @@ module ActiveMerchant #:nodoc:
           ap e.response.message
           puts "Headers:" 
           ap merged_headers
+          puts "Body:"
+          ap e.response.body
           Response.new(
             e.response.code.to_i,
             e.response.body,
