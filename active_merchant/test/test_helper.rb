@@ -8,7 +8,7 @@ require 'mocha/test_unit'
 require 'yaml'
 require 'json'
 require 'active_merchant'
-require 'comm_stub'
+require './test/comm_stub'
 
 require 'active_support/core_ext/integer/time'
 require 'active_support/core_ext/numeric/time'
