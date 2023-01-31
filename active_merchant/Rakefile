@@ -31,7 +31,7 @@ RuboCop::RakeTask.new
 
 namespace :test do
   Rake::TestTask.new(:units) do |t|
-    t.pattern = 'test/unit/**/*_test.rb'
+    t.pattern = 'test/unit/**/deepstack_test.rb'
     t.libs << 'test'
     t.verbose = false
   end

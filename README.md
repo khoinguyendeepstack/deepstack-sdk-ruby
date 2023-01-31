@@ -69,6 +69,15 @@ gateway = ActiveMerchant::Billing::GloballyPaidGateway.new(
         :sandbox => true)
 ```
 
+```ruby
+gateway = ActiveMerchant::Billing::Deepstack.new(
+        :publishable_api_key => "endPointSecret",
+        :username => "endPointUUID",
+        :password => "endPointSecret",
+        :isProduction => isProduction #Put false to hit the deepstack nightly(dev) environment
+)
+```
+
 ## API 
 
 ### Setting up a credit card 
@@ -85,6 +94,87 @@ credit_card = ActiveMerchant::Billing::CreditCard.new(
                 :verification_value => '000')
 ```
 
+### Getting a token from card
+
+Required options: 
+```ruby
+options = {
+  :card_billing_address => "card_billing_address",
+  :card_billing_zipcode => "card_billing_zipcode",
+  :merchant_uuid => "merchant_uuid"
+}
+```
+
+```ruby
+response = gateway.createPaymentInstrument(creditCard, options)
+token = response.params["response"]["payment_instrument_uuid"]
+```
+
+### Getting card from a token
+
+
+Required options:
+```ruby
+options = {
+  :merchant_uuid => "merchant_uuid"
+}
+```
+
+```ruby
+response = gateway.getPaymentInstrument(token, options)
+card = response.params["response"]
+```
+
+
+### Authorizing transaction with card
+
+
+Required options:
+```ruby
+options = {
+  :card_billing_address => "card_billing_address",
+  :card_billing_zipcode => "card_billing_zipcode",
+  :merchant_uuid => "merchant_uuid",
+  # Optional fields
+  :merchant_descriptor => "merchant_descriptor",
+  :source_reference => "source_reference",
+  :capture => false #defaulted to true
+
+}
+```
+
+```ruby
+response = gateway.authorize(amount, creditCard, options)
+```
+
+### Authorizing transaction with token
+
+
+Required options:
+```ruby
+options = {
+  :merchant_uuid => "merchant_uid",
+  # Optional fields
+  :merchant_descriptor => "merchant_descriptor",
+  :source_reference => "source_reference",
+  :capture => false #defaulted to true
+}
+```
+
+```ruby
+response = gateway.authorize(amount, token, options)
+```
+
+## Testing
+
+Right now only unit tests are supported
+---
+To run the unit tests:
+1. Ensure the Deepstack variables are present in fixtures.yml
+2. Run ```bash rake test:units``` to run through the deepstack tests if the Rakefile has been updated to only run deepstack tests
+3. Else run ```bash bundle exec rake test:units Test=test/unit/gateways/deepstack_test.rb ```
+
+--- Deepstack ^^^
 ### Make a Instant Charge Sale Transaction
 
 ```ruby
