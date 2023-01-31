@@ -171,8 +171,8 @@ Right now only unit tests are supported
 ---
 To run the unit tests:
 1. Ensure the Deepstack variables are present in fixtures.yml
-2. Run ```bash rake test:units``` to run through the deepstack tests if the Rakefile has been updated to only run deepstack tests
-3. Else run ```bash bundle exec rake test:units Test=test/unit/gateways/deepstack_test.rb ```
+2. Run ```rake test:units``` to run through the deepstack tests if the Rakefile has been updated to only run deepstack tests
+3. Else run ```bundle exec rake test:units Test=test/unit/gateways/deepstack_test.rb ```
 
 --- Deepstack ^^^
 ### Make a Instant Charge Sale Transaction
