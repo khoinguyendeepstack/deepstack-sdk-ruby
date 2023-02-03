@@ -92,6 +92,24 @@ class DeepstackTest < Test::Unit::TestCase
 
     end
 
+    def test_authorize_withShipping
+        shipping_contact = {
+            :contact_name => "test",
+            :contact_address => "123 Some Street",
+            :contact_city => "some city",
+            :contact_state => "CA",
+            :contact_postal_code => "12345",
+            :contact_phone => "12346",
+            :contact_email => "some email"
+        }
+        optionShipping = @options.merge({
+            :shipping_contact => shipping_contact
+        })
+        response = @gateway.authorize(1000, @credit_card, optionShipping)
+
+        assert_success response
+    end
+
     # TODO: Waiting on working Postman tests for: Refund, void, capture
 
 end

@@ -68,7 +68,8 @@ module ActiveMerchant #noDoc
 
             end
 
-            #Capture
+            # Methods below will return a 404... Need working Postman requests to troubleshoot against
+            # Capture
             def capture(amount, transaction_uuid, options={})
                 post = {}
                 addAmount(post, amount)
@@ -87,7 +88,7 @@ module ActiveMerchant #noDoc
                 addMerchantUUID(post, options)
                 addReferenceNumber(post, options)
                 #this may need separate function if more than one type of token possible
-                post[:transaction_uuid] = transaction_uuid
+                addTransactionUUID(post, transaction_uuid)
 
                 commit("refund", post)
             end
@@ -98,7 +99,8 @@ module ActiveMerchant #noDoc
                 addAmount(post, amount)
                 addMerchantUUID(post, options)
                 #this may need separate function if more than one type of token possible
-                post[:transaction_uuid] = transaction_uuid
+                # post[:transaction_uuid] = transaction_uuid
+                addTransactionUUID(post, transaction_uuid)
                 
                 commit("void", post)
             end
@@ -143,6 +145,12 @@ module ActiveMerchant #noDoc
                 custom_fields = {
                     :source_reference => options.key?(:source_reference) ? options[:source_reference] : ""
                 }
+                if options.key?(:shipping_contact)
+                    custom_fields = custom_fields.merge({
+                        :shipping_contact => addShipping(post, options)
+                        })
+                end
+
                 post[:custom_fields] = custom_fields
             end
 
@@ -156,6 +164,27 @@ module ActiveMerchant #noDoc
 
             def addReferenceNumber(post, options)
                 post[:reference_number] = options.key?(:reference_number) ? options[:reference_number] : ""
+            end
+
+            def addShipping(post, options)
+                if options.key?(:shipping_contact)
+                    shipping_info = options[:shipping_contact]
+                    shipping = {
+                        :contact_name => shipping_info.key?(:contact_name) ? shipping_info[:contact_name] : "",
+                        :contact_address => shipping_info[:contact_address],
+                        :contact_city => shipping_info[:contact_city],
+                        :contact_state => shipping_info[:contact_state],
+                        :contact_postal_code => shipping_info[:contact_postal_code],
+                        :contact_phone => shipping_info.key?(:contact_phone) ? shipping_info[:contact_phone] : "",
+                        :contact_email => shipping_info.key?(:contact_email) ? shipping_info[:contact_email] : ""
+                    }
+                else
+                    post
+                end
+            end
+
+            def addTransactionUUID(post, transaction_uuid)
+                post[:transaction_uuid] = transaction_uuid
             end
 
 
