@@ -138,7 +138,16 @@ options = {
   # Optional fields
   :merchant_descriptor => "merchant_descriptor",
   :source_reference => "source_reference",
-  :capture => false #defaulted to true
+  :capture => false #defaulted to true,
+  :shipping_contact => {
+    :contact_name => "contact_name",
+    :contact_address => "contact_address",
+    :contact_city => "contact_city",
+    :contact_state => "contact_state",
+    :contact_postal_code => "contact_postal_code",
+    :contact_phone => "contact_phone",
+    :contact_email => "contact_email"
+  }
 
 }
 ```
