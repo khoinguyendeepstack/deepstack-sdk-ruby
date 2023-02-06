@@ -178,6 +178,7 @@ module ActiveMerchant #noDoc
                         :contact_phone => shipping_info.key?(:contact_phone) ? shipping_info[:contact_phone] : "",
                         :contact_email => shipping_info.key?(:contact_email) ? shipping_info[:contact_email] : ""
                     }
+                    post[:shipping_contact] = shipping
                 else
                     post
                 end
