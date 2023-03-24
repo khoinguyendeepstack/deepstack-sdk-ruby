@@ -264,6 +264,21 @@ decidir_authorize:
 decidir_purchase:
   api_key: 5df6b5764c3f4822aecdc82d56f26b9d
 
+# DeepStack credentials for test server
+deepstack:
+  publishable_api_key: 2f4c32e21c68b807da8b9c04cbecf3b5dca93f568b3fa2035a6343fb3421025ca71b53fd127901ad1479713a16497c9c93e9d99eaab1f98f460787501b9044f9
+  username: fdd85be3-f02e-41a8-82e3-5f1c341565f0
+  password: "]'q8ht#2*fdb^C9@X)&Txs+C^2@="
+  isProduction: false
+  merchant_uuid: 24a5e224-8131-44cd-a357-226fdcc9ddbe
+  firstName: "John"
+  lastName: "Doe"
+  number: "4111111111111111"
+  month: "02"
+  year: "24"
+  cvv: "999"
+
+
 # No working test credentials
 dibs:
   merchant_id: SOMECREDENTIAL
